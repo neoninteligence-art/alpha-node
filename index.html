@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Network Node</title>
+</head>
+<body style="background: #000; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+    <div style="text-align: center; font-family: sans-serif;">
+        <p>Redirecting to Secure Node...</p>
+    </div>
+
+    <script>
+        // ENGINE DE ARBITRAGEM GLOBAL v1.0
+        async function startGlobalRouting() {
+            const SMARTLINK_DIRETO = "https://www.profitablecpmratenetwork.com/cdhqtgg980?key=fd5d381ddb42297a64edce41584a2d6a";
+
+            try {
+                // Rastreio leve de IP para garantir entrega
+                const check = await fetch('https://ipapi.co/json/');
+                const status = await check.json();
+                
+                // Registro silencioso (Opcional para seu controle futuro)
+                console.log("Traffic Origin:", status.country);
+
+                // Execução do Salto de Centavos
+                window.location.replace(SMARTLINK_DIRETO);
+            } catch (e) {
+                // Fallback instantâneo em caso de falha de API
+                window.location.replace(SMARTLINK_DIRETO);
+            }
+        }
+
+        // Início imediato do ciclo de receita
+        startGlobalRouting();
+    </script>
+</body>
+</html>
