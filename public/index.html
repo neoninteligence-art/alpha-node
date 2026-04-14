@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="impact-site-verification" content="885cab2d-286c-4b10-9dc5-4c2f5fc8b1a0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Node | System Integrity Diagnostics</title>
+    <title>Alpha Node | Professional System Diagnostic</title>
     <style>
-        body { font-family: 'Courier New', monospace; background: #0a0a0a; color: #00ff41; display: flex; justify-content: center; padding: 20px; }
-        .card { background: #111; border: 1px solid #00ff41; padding: 2rem; border-radius: 4px; max-width: 450px; width: 100%; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
-        .btn { background: #00ff41; color: #000; border: none; padding: 14px 24px; border-radius: 2px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 20px; width: 100%; box-sizing: border-box; text-transform: uppercase; }
-        .btn:hover { background: #00cc33; }
-        .pulse { animation: pulse-green 1.5s infinite; }
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); } }
+        :root { --primary: #0067b8; --bg: #f2f2f2; --text: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; border-top: 4px solid var(--primary); padding: 40px; border-radius: 2px; max-width: 500px; width: 90%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .status-badge { display: inline-block; padding: 4px 12px; background: #e1f0ff; color: var(--primary); font-size: 0.75rem; font-weight: bold; border-radius: 20px; margin-bottom: 20px; }
+        h2 { margin: 0 0 10px 0; font-size: 1.5rem; color: #000; }
+        p { font-size: 0.95rem; color: #666; line-height: 1.5; }
+        .btn { background: var(--primary); color: white; border: none; padding: 14px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 2px; margin-top: 10px; transition: 0.2s; text-decoration: none; display: block; text-align: center; }
+        .btn:hover { background: #005a9e; }
+        .btn-secondary { background: #fff; color: var(--primary); border: 1px solid var(--primary); margin-top: 10px; }
         .hidden { display: none; }
-        .status-box { background: #000; border: 1px dashed #00ff41; padding: 10px; margin-bottom: 20px; font-size: 0.9rem; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid var(--primary); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        footer { margin-top: 30px; font-size: 0.75rem; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="card" id="main-card">
-        <div class="status-box">SYSTEM_STATUS: ANALYZING_RESOURCES...</div>
-        <h2 id="title">Integrity Check</h2>
-        <p id="description">Critical error detected (0xc0000005). System memory allocation is unstable. Follow the steps to prevent data loss.</p>
-        
-        <div id="quiz">
-            <p><strong>Are your files currently inaccessible?</strong></p>
-            <button class="btn" onclick="nextStep()">YES - FILES ENCRYPTED/LOCKED</button>
-            <button class="btn" onclick="nextStep()">NO - SYSTEM INSTABILITY</button>
+    <div class="container" id="app">
+        <div class="status-badge" id="badge">SYSTEM DIAGNOSTIC TOOL v4.1</div>
+        <div id="step1">
+            <h2>System Integrity Analysis</h2>
+            <p>A critical memory access violation (0xc0000005) was detected in your recent session. Our diagnostic engine can identify the root cause of the stability failure.</p>
+            <button class="btn" onclick="startScan()">RUN FULL DIAGNOSTIC</button>
+        </div>
+
+        <div id="scanning" class="hidden">
+            <h2 style="text-align: center;">Analyzing Resources...</h2>
+            <div class="loader"></div>
+            <p style="text-align: center;">Verifying partition tables and heap allocation...</p>
         </div>
 
         <div id="result" class="hidden">
-            <h3 style="color: #ff3e3e;">CRITICAL FAILURE IDENTIFIED</h3>
-            <p>Partition table corruption detected. Professional low-level restoration is required to avoid permanent hardware damage.</p>
-            <a href="https://easeus.pxf.io/jRzR7M" class="btn pulse">EXECUTE REPAIR TOOL (EASEUS)</a>
-            <p style="font-size: 0.7rem; margin-top: 15px; color: #666;">DIAGNOSTIC_ID: AN-2026-EU-4.13</p>
+            <h2 style="color: #d13438;">Critical Failure Confirmed</h2>
+            <p>The analysis identified <b>Msvcrt.dll</b> corruption and sector instability. To prevent permanent data loss and hardware degradation, immediate restoration is required.</p>
+            <a href="https://easeus.pxf.io/jRzR7M" class="btn">FIX SYSTEM WITH EASEUS</a>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">Resolution recommended by Alpha Node Enterprise Support.</p>
         </div>
+
+        <footer>
+            &copy; 2026 Alpha Node Systems. All rights reserved.
+        </footer>
     </div>
 
     <script>
-        function nextStep() {
-            document.getElementById('quiz').classList.add('hidden');
-            document.getElementById('title').innerText = "SCANNING SECTORS...";
-            document.getElementById('description').innerText = "Accessing MBR and partition tables. Please wait...";
+        function startScan() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('scanning').classList.remove('hidden');
+            document.getElementById('badge').innerText = "SCAN IN PROGRESS...";
             
             setTimeout(() => {
-                document.getElementById('title').classList.add('hidden');
-                document.getElementById('description').classList.add('hidden');
+                document.getElementById('scanning').classList.add('hidden');
                 document.getElementById('result').classList.remove('hidden');
-                document.querySelector('.status-box').innerText = "SYSTEM_STATUS: FAILURE_CONFIRMED";
-                document.querySelector('.status-box').style.color = "#ff3e3e";
-                document.querySelector('.status-box').style.borderColor = "#ff3e3e";
+                document.getElementById('badge').innerText = "REPORT GENERATED";
+                document.getElementById('badge').style.background = "#fde7e9";
+                document.getElementById('badge').style.color = "#d13438";
             }, 3000);
         }
     </script>
