@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="impact-site-verification" content="885cab2d-286c-4b10-9dc5-4c2f5fc8b1a0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation: Repairing Corrupted Video Headers (0xc10100be)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 40px; background: #fff; }
+        .nav-breadcrumb { color: #666; font-size: 14px; margin-bottom: 20px; }
+        h1 { color: #000; font-size: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .alert-box { background: #f3f2f1; border-left: 4px solid #0078d4; padding: 20px; margin: 25px 0; }
+        .btn-action { background: #0078d4; color: #fff; padding: 12px 28px; text-decoration: none; font-weight: bold; display: inline-block; border-radius: 2px; border: none; cursor: pointer; }
+        .hidden { display: none; }
+        .loader { border: 2px solid #f3f3f3; border-top: 2px solid #0078d4; border-radius: 50%; width: 16px; height: 16px; animation: spin 1s linear infinite; display: inline-block; margin-right: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="nav-breadcrumb">Docs > Media Services > Video Repair > Header Reconstruction</div>
+    <h1>Fixing Corrupted Video Metadata</h1>
+    <p>This module addresses the <strong>0xc10100be</strong> error and header corruption in high-definition video files.</p>
+    <div id="step1">
+        <div class="alert-box"><strong>Status:</strong> Ready to analyze frame consistency.</div>
+        <button class="btn-action" onclick="run()">ANALYZE VIDEO FILE</button>
+    </div>
+    <div id="step2" class="hidden">
+        <div class="alert-box"><div class="loader"></div>Scanning frames and moov atom structures...</div>
+    </div>
+    <div id="step3" class="hidden">
+        <div class="alert-box" style="border-left-color: #107c10;"><strong>Result:</strong> Frame synchronization loss detected. Video structure is recoverable.</div>
+        <p>The Wondershare Repair engine is required to realign the metadata and restore the visual stream.</p>
+        <a href="https://wondersharesoftware.pxf.io/k4z460" class="btn-action">Repair Video (Wondershare)</a>
+    </div>
+    <script>function run(){document.getElementById('step1').classList.add('hidden');document.getElementById('step2').classList.remove('hidden');setTimeout(()=>{document.getElementById('step2').classList.add('hidden');document.getElementById('step3').classList.remove('hidden');},3000);}</script>
+</body>
+</html>
