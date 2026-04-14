@@ -12,4 +12,19 @@
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
+   <url>
+      <loc>https://alpha-node-tawny.vercel.app/video-repair.html</loc>
+      <lastmod>2026-04-13</lastmod>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://alpha-node-tawny.vercel.app/partition-fix.html</loc>
+      <lastmod>2026-04-13</lastmod>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://alpha-node-tawny.vercel.app/outlook-repair.html</loc>
+      <lastmod>2026-04-13</lastmod>
+      <priority>0.7</priority>
+   </url>
 </urlset>
