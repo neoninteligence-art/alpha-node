@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Documentation | System Diagnostic Report</title>
+    <title>Technical Documentation | Alpha Node System Diagnostic</title>
     <style>
         :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
         .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .header-bar { background: var(--primary-blue); height: 5px; }
         .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
+        .meta-info { font-size: 11px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        h1 { font-size: 24px; margin: 0 0 20px 0; color: #000; font-weight: 600; }
+        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', 'Monaco', monospace; font-size: 13px; margin: 20px 0; border-radius: 0 4px 4px 0; }
         .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
+        
+        /* Botão com Feedback Visual */
+        .solution-btn { 
+            display: block; background: var(--primary-blue); color: white; text-align: center; 
+            padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; 
+            margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .solution-btn.loading { background: #323130; cursor: wait; }
+        
         .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
     </style>
 </head>
@@ -23,34 +31,48 @@
     <div class="container">
         <div class="header-bar"></div>
         <div class="content">
-            <div class="meta-info">Diagnostic Terminal // Alpha Node Report</div>
+            <div class="meta-info">Diagnostic Report // SQL Subsystem</div>
             <h1>Resolution for MSSQL Database Error 823</h1>
             
             <p>This technical document provides a breakdown for identifying and resolving core system integrity issues related to the specified error code.</p>
 
             <div class="error-card">
-                Critical Stop Code: [Msg 823, Level 24, State 2: The operating system returned error 21 to SQL Server during a read at offset 0x0000000abcde in file 'D:\MSSQL\DATA\PROD_DB.MDF'.]<br>
+                Critical Stop Code: Msg 823, Level 24, State 2<br>
                 Status: SYSTEM_DATA_STRUCTURE_CORRUPTED<br>
-                Source: Storage_Subsystem_IO
+                Source: Storage_Subsystem_IO (Offset 0x0000000abcde)
             </div>
 
-            <h3>Diagnostic Analysis</h3>
             <div class="tech-specs">
-                <p>Initial diagnostics indicate a Logical Consistency Error or a Torn Page failure within the storage subsystem. This usually happens when a power surge or hardware failure interrupts a write operation to the .mdf file.:</p>
+                <p><strong>Diagnostic Analysis:</strong> The detected error 823 indicates a logical consistency failure. This typically occurs when the OS returns a retryable or hard I/O error during a page read/write operation on the <code>.mdf</code> or <code>.ndf</code> file.</p>
                 <ul>
                     <li>Incomplete sector write during power loss.</li>
-                    <li>Third-party software conflict with partition headers.</li>
+                    <li>Hardware-level disk parity mismatch.</li>
                     <li>Database consistency validation failure.</li>
                 </ul>
             </div>
 
-            <p style="margin-top: 25px;">To prevent permanent data loss, a deep-level reconstruction of the file tree is required before remounting the volume.</p>
-
-            <a href="https://easeus.pxf.io/jRzR7M" class="solution-btn">Initialize Professional Recovery Solution</a>
+            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Initialize Professional Recovery Solution</button>
         </div>
         <div class="footer">
             Alpha Node Documentation Portal - Internal Diagnostic Use Only
         </div>
     </div>
+
+    <script>
+        function startRecovery() {
+            const btn = document.getElementById('actionBtn');
+            const affiliateLink = "https://easeus.pxf.io/jRzR7M"; // Link da EaseUS
+            
+            btn.classList.add('loading');
+            btn.innerHTML = "Validating SQL Environment...";
+            
+            setTimeout(() => {
+                btn.innerHTML = "Launching Recovery Terminal...";
+                setTimeout(() => {
+                    window.location.href = affiliateLink;
+                }, 1500);
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
