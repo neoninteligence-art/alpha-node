@@ -1,0 +1,11 @@
+<div class="content">
+    <div class="meta-info">Terminal Diagnostyczny // Raport PL-IMG</div>
+    <h1>Naprawa uszkodzonych zdjęć JPEG i RAW</h1>
+    <div class="error-card">Błąd Graficzny: Invalid Image Header<br>Status: BITSTREAM_INCONSISTENCY<br>Źródło: DCIM_SOURCE_FILES</div>
+    <div class="tech-specs">
+        <p>Wykryto uszkodzenie danych binarnych obrazu:</p>
+        <ul><li>Uszkodzone dane EXIF lub nagłówek SOS.</li><li>Błędy transferu z karty SD.</li><li>Pikselizacja spowodowana brakiem bitów danych.</li></ul>
+    </div>
+    <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Napraw uszkodzone zdjęcia</button>
+</div>
+<script>function startRecovery(){ const btn = document.getElementById('actionBtn'); btn.innerHTML = "Rekonstrukcja nagłówka..."; setTimeout(() => { btn.innerHTML = "Naprawa bitstreamu..."; setTimeout(() => { window.location.href = "https://easeus.pxf.io/jRzR7M"; }, 1500); }, 1500); }</script>
