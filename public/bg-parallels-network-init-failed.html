@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bg">
+<body>
+    <div class="container">
+        <div class="header-bar"></div>
+        <div class="content">
+            <div class="meta-info">Диагностичен терминал // Alpha Node BG</div>
+            <h1>Parallels: Мрежовата инициализация не бе успешна</h1>
+            <p>Липса на интернет връзка във виртуалната машина след ъпдейт.</p>
+            <div class="error-card">Грешка: Unable to connect to Parallels Networking Service<br>Статус: SERVICE_NOT_RESPONDING<br>Източник: Virtual Network Adapter</div>
+            <h3>Диагностичен анализ</h3>
+            <div class="tech-specs">
+                <p>Виртуалният адаптер не получава IP адрес от хоста. Причини:</p>
+                <ul>
+                    <li>Конфликт с VPN софтуер, инсталиран на вашия Mac.</li>
+                    <li>Мрежовата услуга на Parallels е блокирана от macOS Firewall.</li>
+                    <li>Грешна конфигурация на Bridge Mode vs Shared Network.</li>
+                </ul>
+            </div>
+            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Рестартиране на мрежовите услуги</button>
+        </div>
+        <div class="footer">Alpha Node Documentation</div>
+    </div>
+    <script>
+        function startRecovery() {
+            const btn = document.getElementById('actionBtn');
+            btn.innerHTML = "Нулиране на виртуалния адаптер...";
+            setTimeout(() => {
+                btn.innerHTML = "Конфигуриране на DHCP...";
+                setTimeout(() => { window.location.href = "https://parallels.sjv.io/GbnQgL"; }, 1500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
