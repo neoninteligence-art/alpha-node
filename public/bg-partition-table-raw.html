@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bg">
+<body>
+    <div class="container">
+        <div class="header-bar"></div>
+        <div class="content">
+            <div class="meta-info">Диагностичен терминал // Alpha Node BG</div>
+            <h1>Дискът е в RAW формат: Трябва да форматирате диска</h1>
+            <p>Възстановяване на достъпа до външни дискове без загуба на файлове.</p>
+            <div class="error-card">Код: CHKDSK_NOT_AVAILABLE_RAW<br>Статус: MFT_CORRUPT<br>Източник: Windows Partition Manager</div>
+            <h3>Диагностичен анализ</h3>
+            <div class="tech-specs">
+                <p>Файловата система (NTFS/FAT32) вече не се разпознава. Причини:</p>
+                <ul>
+                    <li>Повредена Master File Table (MFT) поради рязко изваждане на диска.</li>
+                    <li>Логическо увреждане на буут сектора на партицията.</li>
+                    <li>Вирусна атака, променила системните дескриптори.</li>
+                </ul>
+            </div>
+            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Поправка на RAW партиция</button>
+        </div>
+        <div class="footer">Alpha Node Documentation</div>
+    </div>
+    <script>
+        function startRecovery() {
+            const btn = document.getElementById('actionBtn');
+            btn.innerHTML = "Сканиране на MFT резервно копие...";
+            setTimeout(() => {
+                btn.innerHTML = "Възстановяване на файлови дескриптори...";
+                setTimeout(() => { window.location.href = "https://wondersharesoftware.pxf.io/k4z460"; }, 1500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
