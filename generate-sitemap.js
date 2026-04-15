@@ -1,25 +1,29 @@
 const fs = require('fs');
 const path = require('path');
 
-// Configurações
-const DOMAIN = 'https://seusite.com'; // SUBSTITUA PELO SEU DOMÍNIO
-const PUBLIC_DIR = path.join(__dirname, 'public');
+// Configurações principais
+const DOMAIN = 'https://alpha-node-tawny.vercel.app'; 
+const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const SITEMAP_PATH = path.join(PUBLIC_DIR, 'sitemap.xml');
 
-// Pastas que queremos monitorar
+// Lista de pastas que o script vai varrer
 const countries = ['bg', 'cz', 'hu', 'pl', 'ro', 'us', 'br'];
 
 function generateSitemap() {
+    console.log('Iniciando varredura para o Sitemap...');
+    
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-    // 1. Adiciona a Home e arquivos soltos na raiz da public (como index.html)
-    const rootFiles = fs.readdirSync(PUBLIC_DIR).filter(file => file.endsWith('.html'));
-    rootFiles.forEach(file => {
-        xml += `  <url>\n    <loc>${DOMAIN}/${file}</loc>\n    <priority>0.8</priority>\n  </url>\n`;
-    });
+    // 1. Arquivos da raiz da pasta public (ex: index.html)
+    if (fs.existsSync(PUBLIC_DIR)) {
+        const rootFiles = fs.readdirSync(PUBLIC_DIR).filter(file => file.endsWith('.html'));
+        rootFiles.forEach(file => {
+            xml += `  <url>\n    <loc>${DOMAIN}/${file}</loc>\n    <priority>0.8</priority>\n  </url>\n`;
+        });
+    }
 
-    // 2. Varre as pastas de países
+    // 2. Arquivos dentro das pastas de cada país
     countries.forEach(country => {
         const countryPath = path.join(PUBLIC_DIR, country);
         
@@ -33,8 +37,12 @@ function generateSitemap() {
 
     xml += `</urlset>`;
 
-    fs.writeFileSync(SITEMAP_PATH, xml);
-    console.log(`✅ Sitemap gerado com sucesso em: ${SITEMAP_PATH}`);
+    try {
+        fs.writeFileSync(SITEMAP_PATH, xml);
+        console.log(`✅ SUCESSO: Sitemap gerado com todos os links das pastas.`);
+    } catch (err) {
+        console.error('❌ ERRO ao gravar arquivo:', err);
+    }
 }
 
 generateSitemap();
