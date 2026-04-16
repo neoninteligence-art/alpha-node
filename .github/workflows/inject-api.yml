@@ -7,29 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Arquiteto Global Smart Injector
+      - name: Arquiteto Deep Cleaning & Injection
         run: |
           node -e "
           const fs = require('fs');
           const path = require('path');
-
-          function getBanner(lang) {
-            const texts = {
-              'pt': { title: '⚙️ Solução Corporativa', desc: 'Integre dados de sistemas legados via API profissional.', btn: 'Acesse Documentação no RapidAPI' },
-              'en': { title: '⚙️ Enterprise Solution', desc: 'Integrate legacy system data via professional API.', btn: 'Access Documentation on RapidAPI' },
-              'cz': { title: '⚙️ Podnikové řešení', desc: 'Integrovat data starších systémů prostřednictvím profesionálního rozhraní API.', btn: 'Přístup k dokumentaci v RapidAPI' }
-            };
-            const t = texts[lang] || texts['en'];
-            return \`
-          <div style='width:100%; display:flex; justify-content:center; padding:60px 0; background:#fdfdfd; border-top:1px solid #eee; margin-top:40px;'>
-            <div style='background:#ffffff; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;'>
-              <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>\${t.title}</p>
-              <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>\${t.desc}</p>
-              <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>\${t.btn}</a>
-            </div>
-          </div>
-          \`;
-          }
 
           function processDir(directory) {
             fs.readdirSync(directory).forEach(file => {
@@ -39,21 +21,44 @@ jobs:
               } else if (file.endsWith('.html')) {
                 let content = fs.readFileSync(fullPath, 'utf8');
                 
-                // Limpeza Radical: Remove TUDO que for banner antigo, inclusive duplicatas
-                content = content.replace(/[\\s\\S]*?/g, '');
-                content = content.replace(/<div style='width:100%; clear:both;[\\s\\S]*?<\/div><\/div>/g, '');
+                // --- FASE 1: LIMPEZA TOTAL (O PADRÃO PARA LOCALIZAR) ---
+                // Removemos qualquer div que contenha o link do RapidAPI ou as frases que injetamos antes
+                const patterns = [
+                  /[\\s\\S]*?/g,
+                  /<div[^>]*?RapidAPI[\\s\\S]*?<\/div><\/div>/g,
+                  /<div[^>]*?Solução Corporativa[\\s\\S]*?<\/div><\/div>/g,
+                  /<div[^>]*?Enterprise Solution[\\s\\S]*?<\/div><\/div>/g
+                ];
                 
-                // Detecta idioma pela pasta
-                let lang = 'en';
-                if (fullPath.includes('/cz/')) lang = 'cz';
-                if (fullPath === 'public/index.html') lang = 'pt'; // Principal em PT como solicitado antes
+                patterns.forEach(p => { content = content.replace(p, ''); });
 
-                const finalBanner = getBanner(lang);
+                // --- FASE 2: DEFINIR IDIOMA E BANNER ---
+                // Se estiver em subpasta (ex: /cz/), usamos Inglês. No index principal, Português.
+                const isInternational = fullPath.includes(path.sep) && !fullPath.endsWith('index.html');
+                
+                const lang = {
+                  title: isInternational ? '⚙️ Enterprise Solution' : '⚙️ Solução Corporativa',
+                  desc: isInternational ? 'Integrate legacy system data via professional API.' : 'Integre dados de sistemas legados via API profissional.',
+                  btn: isInternational ? 'Access Documentation on RapidAPI' : 'Acesse Documentação no RapidAPI'
+                };
 
+                const newBanner = \`
+          <div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
+            <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+              <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>\${lang.title}</p>
+              <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>\${lang.desc}</p>
+              <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>\${lang.btn}</a>
+            </div>
+          </div>
+          \`;
+
+                // --- FASE 3: INJEÇÃO LIMPA ---
                 if (content.includes('</body>')) {
-                  const newContent = content.replace('</body>', finalBanner + '</body>');
-                  fs.writeFileSync(fullPath, newContent);
-                  console.log('Finalizado com Sucesso: ' + fullPath);
+                  // Remove espaços extras criados pelas limpezas anteriores para não sujar o HTML
+                  content = content.trim();
+                  const finalContent = content.replace('</body>', newBanner + '\\n</body>');
+                  fs.writeFileSync(fullPath, finalContent);
+                  console.log('Limpo e injetado: ' + fullPath);
                 }
               }
             });
@@ -66,5 +71,5 @@ jobs:
           git config --global user.name 'GitHub Arquiteto'
           git config --global user.email 'action@github.com'
           git add .
-          git commit -m "Arquitetura Final: Limpeza Total e Tradução Automática" || echo "Sem mudanças"
+          git commit -m "Fix: Limpeza de duplicatas e ajuste de idioma global" || echo "Sem alterações"
           git push
