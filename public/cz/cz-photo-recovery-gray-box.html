@@ -3,52 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technická dokumentace | Alpha Node CZ</title>
+    <meta name="description" content="Oprava poškozených fotografií (šedé bloky, rozmazané snímky). Obnova JPEG, RAW a PNG souborů z SD karet a disků.">
+    <title>Oprava poškozených fotek | Odstranění šedých bloků z JPEG</title>
     <style>
-        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header-bar { background: var(--primary-blue); height: 5px; }
-        .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
-        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
-        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+        body { background: #fdfdfd; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; padding: 20px; }
+        .photo-repair-box { max-width: 800px; margin: 40px auto; background: #fff; padding: 60px; border: 1px solid #eaeaea; border-radius: 2px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .top-line { height: 4px; background: linear-gradient(90deg, #ff416c, #ff4b2b); margin-bottom: 30px; }
+        h1 { font-size: 30px; color: #111; font-weight: 300; line-height: 1.2; }
+        .preview-sim { display: flex; gap: 10px; margin: 30px 0; }
+        .sim-box { flex: 1; height: 100px; background: #eee; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #999; text-transform: uppercase; }
+        .warning-cz { border-left: 3px solid #ff4b2b; padding: 20px; background: #fff9f9; margin: 30px 0; font-size: 15px; }
+        .cta-photo { display: block; background: #111; color: #fff; text-align: center; padding: 20px; text-decoration: none; font-weight: bold; border-radius: 3px; font-size: 18px; transition: 0.3s; }
+        .cta-photo:hover { background: #ff4b2b; }
+        .features { list-style: none; padding: 0; display: flex; justify-content: space-between; margin-top: 40px; font-size: 12px; color: #777; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Diagnostický terminál // Alpha Node CZ</div>
-            <h1>Oprava fotografií: Soubory JPEG se zobrazují s šedými pruhy</h1>
-            <p>Rekonstrukce částečně poškozených obrazových dat na síťových discích NAS.</p>
-            <div class="error-card">Status: BITSTREAM_INCOMPLETE<br>Kód: JPEG_DECODE_ERROR_0x55<br>Zdroj: Image Integrity Scanner</div>
-            <h3>Diagnostická analýza</h3>
-            <div class="tech-specs">
-                <p>Data pixelů byla během přenosu ztracena. Příčiny:</p>
-                <ul>
-                    <li>Chyba při nahrávání na cloudové úložiště přes nestabilní Wi-Fi.</li>
-                    <li>Nekompletní kopírování souborů z externího disku.</li>
-                    <li>Logické poškození souborového systému NAS serveru.</li>
-                </ul>
-            </div>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Opravit poškozené JPEG fotografie</button>
+    <div class="photo-repair-box">
+        <div class="top-line"></div>
+        <h1>Zobrazují se vaše fotky s šedými bloky?</h1>
+        
+        <div class="preview-sim">
+            <div class="sim-box">Originál</div>
+            <div class="sim-box" style="background: linear-gradient(to bottom, #eee 50%, #999 50%); color:#fff;">Poškozeno</div>
+            <div class="sim-box" style="background: #e1f5fe; color:#0288d1; border-style:solid;">Opraveno</div>
         </div>
-        <div class="footer">Alpha Node Documentation - Pouze pro diagnostické účely</div>
+
+        <p>Tento jev, známý jako <strong>"Gray Box Overlap"</strong>, vzniká při přerušení zápisu na SD kartu nebo v důsledku poškození bitového streamu v hlavičce souboru JPEG. Data tam stále jsou, ale dekodér je nedokáže správně vykreslit.</p>
+
+        <div class="warning-cz">
+            <strong>Technická analýza:</strong> Naše technologie využívá metodu <em>Advanced Sample Matching</em>, která porovnává poškozené segmenty se zdravou strukturou souboru a obnovuje integritu pixelů.
+        </div>
+
+        <a href="https://wondersharesoftware.pxf.io/k4z460" class="cta-photo" rel="nofollow">OPRAVIT POŠKOZENÉ FOTOGRAFIE →</a>
+
+        <ul class="features">
+            <li>✓ Podpora RAW (CR2, NEF, ARW)</li>
+            <li>✓ Hromadná oprava</li>
+            <li>✓ 100% bezpečné</li>
+        </ul>
     </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Oprava DCT koeficientů...";
-            setTimeout(() => {
-                btn.innerHTML = "Rekonstrukce barevného prostoru...";
-                setTimeout(() => { window.location.href = "https://wondersharesoftware.pxf.io/k4z460"; }, 1500);
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
