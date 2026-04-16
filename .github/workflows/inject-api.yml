@@ -7,44 +7,54 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Arquiteto Deep Cleaning & Injection
+      - name: Arquiteto Deep Clean and Reset
         run: |
           node -e "
           const fs = require('fs');
           const path = require('path');
 
-          function processDir(directory) {
-            fs.readdirSync(directory).forEach(file => {
-              const fullPath = path.join(directory, file);
-              if (fs.lstatSync(fullPath).isDirectory()) {
-                processDir(fullPath);
+          function getAllFiles(dirPath, arrayOfFiles) {
+            const files = fs.readdirSync(dirPath);
+            arrayOfFiles = arrayOfFiles || [];
+            files.forEach(function(file) {
+              if (fs.statSync(dirPath + '/' + file).isDirectory()) {
+                arrayOfFiles = getAllFiles(dirPath + '/' + file, arrayOfFiles);
               } else if (file.endsWith('.html')) {
-                let content = fs.readFileSync(fullPath, 'utf8');
-                
-                // --- FASE 1: LIMPEZA TOTAL (O PADRÃO PARA LOCALIZAR) ---
-                // Removemos qualquer div que contenha o link do RapidAPI ou as frases que injetamos antes
-                const patterns = [
-                  /[\\s\\S]*?/g,
-                  /<div[^>]*?RapidAPI[\\s\\S]*?<\/div><\/div>/g,
-                  /<div[^>]*?Solução Corporativa[\\s\\S]*?<\/div><\/div>/g,
-                  /<div[^>]*?Enterprise Solution[\\s\\S]*?<\/div><\/div>/g
-                ];
-                
-                patterns.forEach(p => { content = content.replace(p, ''); });
+                arrayOfFiles.push(path.join(dirPath, '/', file));
+              }
+            });
+            return arrayOfFiles;
+          }
 
-                // --- FASE 2: DEFINIR IDIOMA E BANNER ---
-                // Se estiver em subpasta (ex: /cz/), usamos Inglês. No index principal, Português.
-                const isInternational = fullPath.includes(path.sep) && !fullPath.endsWith('index.html');
-                
-                const lang = {
-                  title: isInternational ? '⚙️ Enterprise Solution' : '⚙️ Solução Corporativa',
-                  desc: isInternational ? 'Integrate legacy system data via professional API.' : 'Integre dados de sistemas legados via API profissional.',
-                  btn: isInternational ? 'Access Documentation on RapidAPI' : 'Acesse Documentação no RapidAPI'
-                };
+          const allFiles = getAllFiles('public');
 
-                const newBanner = \`
-          <div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
-            <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+          allFiles.forEach(filePath => {
+            let content = fs.readFileSync(filePath, 'utf8');
+
+            // --- A VASSOURA: LOCALIZA QUALQUER DIV QUE TENHA O LINK DO RAPIDAPI ---
+            // Este padrão localiza desde a primeira div simples até as mais complexas
+            const cleanupPattern = /<div[^>]*?>[\s\S]*?rapidapi\.com\/techsuportalvorada[\s\S]*?<\/div>[\s\S]*?<\/div>|[\s\S]*?/g;
+            
+            content = content.replace(cleanupPattern, '');
+            
+            // Remove espaços em branco excessivos no final criados pelas limpezas
+            content = content.trim().replace(/\s+<\/body>/, '</body>');
+
+            // --- A IDENTIFICAÇÃO: INGLÊS PARA O MUNDO, PT PARA O INDEX ---
+            const isMainIndex = filePath.endsWith('public/index.html');
+            const lang = isMainIndex ? {
+              title: '⚙️ Solução Corporativa',
+              desc: 'Integre dados de sistemas legados via API profissional.',
+              btn: 'Acesse Documentação no RapidAPI'
+            } : {
+              title: '⚙️ Enterprise Solution',
+              desc: 'Integrate legacy system data via professional API.',
+              btn: 'Access Documentation on RapidAPI'
+            };
+
+            const newBanner = \`
+          <div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
+            <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
               <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>\${lang.title}</p>
               <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>\${lang.desc}</p>
               <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>\${lang.btn}</a>
@@ -52,24 +62,17 @@ jobs:
           </div>
           \`;
 
-                // --- FASE 3: INJEÇÃO LIMPA ---
-                if (content.includes('</body>')) {
-                  // Remove espaços extras criados pelas limpezas anteriores para não sujar o HTML
-                  content = content.trim();
-                  const finalContent = content.replace('</body>', newBanner + '\\n</body>');
-                  fs.writeFileSync(fullPath, finalContent);
-                  console.log('Limpo e injetado: ' + fullPath);
-                }
-              }
-            });
-          }
-
-          processDir('public');
+            if (content.includes('</body>')) {
+              const finalContent = content.replace('</body>', newBanner + '\\n</body>');
+              fs.writeFileSync(filePath, finalContent);
+              console.log('Resetado e Corrigido: ' + filePath);
+            }
+          });
           "
       - name: Commit and Push
         run: |
           git config --global user.name 'GitHub Arquiteto'
           git config --global user.email 'action@github.com'
           git add .
-          git commit -m "Fix: Limpeza de duplicatas e ajuste de idioma global" || echo "Sem alterações"
+          git commit -m "RESET TOTAL: Limpeza de duplicatas e correção de regionalização" || echo "Sem mudanças"
           git push
