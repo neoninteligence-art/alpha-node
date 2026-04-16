@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Naprawa błędu SQL Server 823. Profesjonalne odzyskiwanie baz danych MDF/NDF po uszkodzeniu fizycznym lub logicznym.">
+    <title>Błąd SQL Server 823 | Naprawa Baz Danych MDF i NDF</title>
+    <style>
+        :root { --sql-blue: #00205b; --danger: #c62828; }
+        body { background: #f8f9fa; color: #333; font-family: 'Consolas', 'Monaco', monospace; padding: 40px; }
+        .sql-panel { max-width: 900px; margin: auto; background: #fff; border: 1px solid #ddd; padding: 60px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header-top { border-bottom: 2px solid var(--sql-blue); margin-bottom: 30px; padding-bottom: 20px; }
+        h1 { color: var(--sql-blue); font-size: 26px; font-family: sans-serif; }
+        .error-terminal { background: #1a1a1a; color: #ffeb3b; padding: 25px; border-radius: 4px; margin: 30px 0; font-size: 14px; border-left: 8px solid var(--danger); }
+        .technical-analysis { background: #eef2f7; padding: 30px; border-radius: 4px; margin: 30px 0; font-family: sans-serif; line-height: 1.6; }
+        .cta-sql { display: block; background: var(--sql-blue); color: #fff; text-align: center; padding: 22px; text-decoration: none; font-weight: bold; font-size: 20px; border-radius: 4px; font-family: sans-serif; margin-top: 40px; }
+        .cta-sql:hover { background: #003399; }
+        footer { font-size: 11px; color: #888; text-align: center; margin-top: 40px; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="sql-panel">
+        <div class="header-top">
+            <h1>Diagnostyka Bazy Danych: SQL Server Error 823</h1>
+        </div>
+
+        <div class="error-terminal">
+            Msg 823, Level 24, State 2 <br>
+            The operating system returned error 21(The device is not ready.) to SQL Server during a read at offset 0x000000000ae000 in file 'C:\Data\Database.mdf'.
+        </div>
+
+        <div class="technical-analysis">
+            <h3>Analiza Inżynieryjna:</h3>
+            <p>Błąd 823 jest błędem krytycznym, który zazwyczaj wskazuje na problem z podsystemem I/O lub uszkodzenie fizyczne nośnika. W przeciwieństwie do błędów logicznych, błąd ten oznacza, że SQL Server nie może ukończyć operacji odczytu/zapisu na dysku.</p>
+            <ul>
+                <li>Sprawdzenie sum kontrolnych (Checksum) stron bazy danych.</li>
+                <li>Naprawa przerwanych łańcuchów stron (Page Chain).</li>
+                <li>Rekonstrukcja tabel bez konieczności przywracania z uszkodzonych kopii zapasowych.</li>
+            </ul>
+        </div>
+
+        <a href="https://easeus.pxf.io/jRzR7M" class="cta-sql" rel="nofollow">NAPRAW BAZĘ SQL (MDF) →</a>
+
+        <footer>Obsługiwane: SQL Server 2022, 2019, 2017, 2016, 2014, 2012, 2008 i starsze.</footer>
+    </div>
+</body>
+</html>

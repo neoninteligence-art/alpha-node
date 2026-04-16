@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recuperare date RAID Degraded. Reparăm matrice RAID 5, 6 și 10 cu mai multe unități defecte. Nu reconstruiți fără backup!">
+    <title>Recuperare RAID Degraded | Reparare Server NAS & SAN</title>
+    <style>
+        :root { --warn: #ff9800; --dark: #1a1a1a; }
+        body { background: #121212; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 40px; }
+        .raid-box { max-width: 850px; margin: auto; background: #1e1e1e; border: 1px solid #333; padding: 50px; border-top: 5px solid var(--warn); }
+        .status-badge { background: rgba(255, 152, 0, 0.2); color: var(--warn); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid var(--warn); }
+        h1 { font-size: 30px; margin: 20px 0; }
+        .warning-area { background: #2c1a00; border: 1px dashed var(--warn); padding: 25px; margin: 30px 0; }
+        .tech-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .spec-item { background: #252525; padding: 15px; border-radius: 4px; font-size: 14px; }
+        .cta-raid { display: block; background: var(--warn); color: #000; text-align: center; padding: 22px; text-decoration: none; font-weight: 800; border-radius: 4px; font-size: 19px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="raid-box">
+        <span class="status-badge">ALERTA SISTEM: RAID DEGRADED</span>
+        <h1>Matricea RAID este în stare critică?</h1>
+        
+        <p>Un volum <strong>RAID Degraded</strong> înseamnă că unul sau mai multe discuri au eșuat. Procesul de "Rebuild" automat este cea mai periculoasă etapă, deoarece stresează discurile rămase și poate duce la o a doua defecțiune, cauzând pierderea totală a datelor.</p>
+
+        <div class="warning-area">
+            <strong>RECOMANDARE:</strong> Opriți imediat serverul. Extragem datele bit-cu-bit printr-o clonare de siguranță, reconstruind matricea virtual pentru a evita scrierea pe discurile originale.
+        </div>
+
+        <div class="tech-specs">
+            <div class="spec-item">✓ Recuperare RAID 0, 1, 5, 6, 10, 50, 60</div>
+            <div class="spec-item">✓ Suport pentru controlere HP, Dell, IBM, LSI</div>
+            <div class="spec-item">✓ Compatibil cu Synology, QNAP, Buffalo</div>
+            <div class="spec-item">✓ Recuperare fișiere VMFS, NTFS, XFS</div>
+        </div>
+
+        <a href="https://easeus.pxf.io/jRzR7M" class="cta-raid" rel="nofollow">RECUPEREAZĂ DATELE DIN RAID →</a>
+    </div>
+</body>
+</html>

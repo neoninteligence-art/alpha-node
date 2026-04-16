@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Професионално възстановяване на данни от RAID 0, 1, 5, 6, 10. Поправка на NAS сървъри Synology, QNAP и WD My Cloud в България.">
+    <title>Възстановяване на RAID масиви | Ремонт на NAS сървъри</title>
+    <style>
+        :root { --bg-red: #d32f2f; --bg-dark: #121212; --text-light: #e0e0e0; }
+        body { background-color: var(--bg-dark); color: var(--text-light); font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.7; padding: 30px; }
+        .raid-wrapper { max-width: 850px; margin: 40px auto; background: #1e1e1e; border-radius: 8px; padding: 50px; border: 1px solid #333; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .system-status { display: inline-block; background: rgba(211, 47, 47, 0.2); color: #ff5252; padding: 6px 15px; border-radius: 4px; font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        h1 { font-size: 30px; margin-top: 20px; color: #ffffff; }
+        .warning-zone { border-left: 4px solid var(--bg-red); background: #261212; padding: 25px; margin: 30px 0; border-radius: 4px; }
+        .step-list { margin: 30px 0; padding: 0; list-style: none; }
+        .step-list li { padding: 10px 0; border-bottom: 1px solid #2a2a2a; color: #b0b0b0; }
+        .step-list strong { color: #fff; }
+        .cta-bulgaria { display: block; background: var(--bg-red); color: #fff; text-align: center; padding: 22px; text-decoration: none; font-weight: 800; border-radius: 5px; font-size: 19px; margin-top: 40px; transition: 0.3s; text-transform: uppercase; }
+        .cta-bulgaria:hover { background: #b71c1c; transform: scale(1.02); box-shadow: 0 0 20px rgba(211, 47, 47, 0.4); }
+        footer { margin-top: 40px; text-align: center; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="raid-wrapper">
+        <span class="system-status">Критична системна грешка</span>
+        <h1>Възстановяване на данни от повреден RAID масив</h1>
+        
+        <div class="warning-zone">
+            <strong>ВНИМАНИЕ:</strong> Ако вашият NAS сървър (Synology, QNAP или Asustor) показва статус "RAID Degraded" или "Volume Crashed", незабавно преустановете всякакви опити за запис. Презаписването на паритета може да доведе до перманентна загуба на файлове.
+        </div>
+
+        <p>Повредата на RAID масив обикновено се дължи на повреда в контролера, софтуерна грешка в Linux-базираната файлова система (Btrfs/EXT4) или едновременна повреда на повече от един диск. Нашата технология позволява виртуален монтаж на масива и извличане на данни без риск за физическата цялост на дисковете.</p>
+
+        <ul class="step-list">
+            <li><strong>Стъпка 1:</strong> Анализ на метаданните на RAID контролера.</li>
+            <li><strong>Стъпка 2:</strong> Реконструкция на файловата структура (MFT/Inodes).</li>
+            <li><strong>Стъпка 3:</strong> Безопасно извличане на данни към външен носител.</li>
+        </ul>
+
+        <a href="https://easeus.pxf.io/jRzR7M" class="cta-bulgaria" rel="nofollow">Възстанови данните сега →</a>
+        
+        <footer>Поддръжка за RAID 0, RAID 1, RAID 5, RAID 6, RAID 10. Професионално решение за бизнеса.</footer>
+    </div>
+</body>
+</html>
