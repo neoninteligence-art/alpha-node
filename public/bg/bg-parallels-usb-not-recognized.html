@@ -3,52 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Техническа документация | Alpha Node BG</title>
+    <meta name="description" content="Решете проблеми с USB разпознаването в Parallels Desktop на Mac. Ръководство за свързване на външни устройства към Windows виртуална машина.">
+    <title>USB устройството не се разпознава в Parallels? | Фикс за Mac M-Series</title>
     <style>
-        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header-bar { background: var(--primary-blue); height: 5px; }
-        .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
-        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
-        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+        :root { --mac-gray: #86868b; --p-red: #d71920; --bg-silver: #fbfbfd; }
+        body { background-color: var(--bg-silver); color: #1d1d1f; font-family: -apple-system, sans-serif; padding: 40px; }
+        .wrapper-usb { max-width: 850px; margin: auto; background: #fff; border-radius: 18px; padding: 55px; border: 1px solid #d2d2d7; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .status-header { color: var(--p-red); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-size: 34px; margin: 15px 0; font-weight: 700; letter-spacing: -0.5px; }
+        .tech-note { background: #f5f5f7; border-radius: 12px; padding: 25px; margin: 30px 0; line-height: 1.6; border-left: 4px solid #000; }
+        .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 35px; }
+        .step-item { background: #fff; border: 1px solid #e5e5e5; padding: 20px; border-radius: 10px; font-size: 14px; }
+        .step-item h4 { margin-top: 0; color: #000; }
+        .cta-usb { display: block; background: #000; color: #fff; text-align: center; padding: 20px; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 18px; margin-top: 40px; transition: 0.3s; }
+        .cta-usb:hover { background: #333; transform: scale(1.02); }
+        .support-tag { text-align: center; margin-top: 30px; font-size: 11px; color: var(--mac-gray); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Диагностичен терминал // Alpha Node BG</div>
-            <h1>Parallels: USB устройството не се разпознава от Windows</h1>
-            <p>Проблеми с прехвърлянето на хардуерни ключове към виртуалната машина.</p>
-            <div class="error-card">Грешка: USB Device Descriptor Request Failed<br>Статус: PASSTHROUGH_ERROR<br>Източник: Parallels USB Controller</div>
-            <h3>Диагностичен анализ</h3>
-            <div class="tech-specs">
-                <p>Хостът (Mac) не освобождава устройството за виртуалната машина. Причини:</p>
-                <ul>
-                    <li>Устройството е "заключено" от друго приложение в macOS.</li>
-                    <li>Конфликт между USB 2.0 и USB 3.1 контролерите в настройките.</li>
-                    <li>Липса на специфични OEM драйвери в Windows средата.</li>
-                </ul>
-            </div>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Нулиране на USB връзката</button>
+    <div class="wrapper-usb">
+        <span class="status-header">Хардуерна диагностика</span>
+        <h1>USB устройството не се разпознава?</h1>
+        
+        <div class="tech-note">
+            Проблемът "USB device not recognized" в Parallels Desktop обикновено възниква при използване на USB 3.0/3.1 устройства на Mac с Apple Silicon (M1/M2/M3). Системата често не успява да прехвърли правата за управление на порта от macOS към виртуалната машина на Windows.
         </div>
-        <div class="footer">Alpha Node Documentation</div>
+
+        <div class="steps-grid">
+            <div class="step-item">
+                <h4>1. USB контролер</h4>
+                Уверете се, че в настройките на VM (Hardware > USB & Bluetooth) е избран "USB 3.1" режим за максимална съвместимост.
+            </div>
+            <div class="step-item">
+                <h4>2. Системни права</h4>
+                Проверете System Settings > Privacy & Security > Accessories, за да разрешите на нови устройства да се свързват.
+            </div>
+        </div>
+
+        <p>За професионално оборудване (диагностични инструменти, счетоводни токени или специализиран хардуер) е критично използването на последната версия на Parallels с пълна поддръжка за USB Passthrough.</p>
+
+        <a href="https://parallels.sjv.io/GbnQgL" class="cta-usb" rel="nofollow">Вземете Parallels с пълна USB поддръжка →</a>
+        
+        <div class="support-tag">Поддържа всички USB-C и Thunderbolt 4 хъбове на MacBook Pro и Air.</div>
     </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Преинсталиране на USB контролер...";
-            setTimeout(() => {
-                btn.innerHTML = "Принудително пренасочване...";
-                setTimeout(() => { window.location.href = "https://parallels.sjv.io/GbnQgL"; }, 1500);
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
