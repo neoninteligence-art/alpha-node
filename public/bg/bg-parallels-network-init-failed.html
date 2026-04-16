@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ръководство за поправка на грешка 'Network Initialization Failed' в Parallels Desktop на Mac. Решете проблемите с интернет връзката в Windows 11.">
+    <title>Поправка: Parallels Network Initialization Failed | Mac M3/M4 Guide</title>
+    <style>
+        :root { --p-red: #ed1c24; --bg-mac: #f5f5f7; --text: #1d1d1f; }
+        body { background-color: var(--bg-mac); color: var(--text); font-family: -apple-system, sans-serif; line-height: 1.6; padding: 40px; }
+        .fix-container { max-width: 800px; margin: auto; background: #fff; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .header-box { border-bottom: 1px solid #d2d2d7; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { font-size: 32px; font-weight: 700; color: #000; }
+        .error-msg { background: #fff2f2; border: 1px solid var(--p-red); color: var(--p-red); padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px; margin: 20px 0; }
+        .solution-step { margin-bottom: 25px; padding-left: 20px; border-left: 3px solid #0071e3; }
+        .cta-parallels { display: block; background: #000; color: #fff; text-align: center; padding: 20px; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 18px; margin-top: 40px; transition: 0.3s; }
+        .cta-parallels:hover { background: #333; transform: scale(1.02); }
+        .tech-footer { margin-top: 50px; font-size: 12px; color: #86868b; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="fix-container">
+        <div class="header-box">
+            <h1>Грешка: Network Initialization Failed</h1>
+        </div>
+        
+        <p>Ако виждате съобщението <strong>"Network Initialization Failed"</strong> при стартиране на Windows през Parallels Desktop на вашия Mac, това обикновено се дължи на неправилна конфигурация на виртуалния мрежов адаптер или конфликт със системните разширения на macOS.</p>
+
+        <div class="error-msg">
+            [Error Code: PRL_ERR_NET_INIT_FAILED] - Възникна грешка при инициализиране на мрежата.
+        </div>
+
+        <h3>Как да решите проблема:</h3>
+        <div class="solution-step">
+            <strong>1. Проверка на мрежовия режим:</strong> Отидете в Settings > Hardware > Network и се уверете, че е избран режим "Shared Network".
+        </div>
+        <div class="solution-step">
+            <strong>2. Рестартиране на Parallels Services:</strong> Отворете Terminal в macOS и изпълнете командата <code>sudo prlsrvctl stack-restart</code>.
+        </div>
+        <div class="solution-step">
+            <strong>3. Актуализация на драйверите:</strong> Остарелите Parallels Tools често причиняват този срив при преход към нова версия на macOS.
+        </div>
+
+        <p>За най-добра производителност и стабилност на мрежата при използване на чипове Apple M1, M2 или M3, се препоръчва използването на най-новата оптимизирана версия на Parallels Desktop.</p>
+
+        <a href="https://parallels.sjv.io/GbnQgL" class="cta-parallels" rel="nofollow">Изтеглете оптимизирана версия на Parallels →</a>
+
+        <div class="tech-footer">
+            Съвместим с macOS Sonoma, Sequoia и Windows 11 Pro for ARM.
+        </div>
+    </div>
+</body>
+</html>

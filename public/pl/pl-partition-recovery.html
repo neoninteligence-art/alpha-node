@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Odzyskiwanie utraconych partycji. Naprawa uszkodzonej tabeli partycji MBR/GPT i przywracanie brakujących dysków lokalnych.">
+    <title>Odzyskiwanie Partycji | Przywracanie brakujących dysków MBR/GPT</title>
+    <style>
+        body { background: #eceff1; color: #263238; font-family: 'Segoe UI', sans-serif; padding: 30px; }
+        .partition-box { max-width: 850px; margin: auto; background: #fff; padding: 60px; border-radius: 4px; border-top: 6px solid #607d8b; }
+        h1 { font-size: 32px; color: #37474f; margin-bottom: 25px; }
+        .diagram-sim { border: 1px solid #cfd8dc; margin: 30px 0; padding: 20px; background: #fdfdfd; }
+        .disk-block { display: inline-block; padding: 15px; background: #eee; margin-right: 5px; font-size: 12px; color: #999; border: 1px solid #ddd; }
+        .lost-block { background: #ffebee; color: #c62828; border: 1px dashed #c62828; }
+        .cta-part { display: block; background: #37474f; color: #fff; text-align: center; padding: 22px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 19px; margin-top: 40px; }
+        .cta-part:hover { background: #263238; }
+    </style>
+</head>
+<body>
+    <div class="partition-box">
+        <h1>Brakująca partycja? Przywróć ją teraz.</h1>
+        <p>Twój dysk lokalny (D:, E:) nagle zniknął z Eksploratora plików? W "Zarządzaniu dyskami" obszar ten może widnieć jako "Nieprzydzielone miejsce". Najczęstszą przyczyną jest uszkodzenie nagłówka partycji.</p>
+        
+        <div class="diagram-sim">
+            <strong>Struktura dysku:</strong><br><br>
+            <div class="disk-block">Zastrzeżone przez system</div>
+            <div class="disk-block">C: (System)</div>
+            <div class="disk-block lost-block">UTRACONA PARTYCJA (RAW/Unallocated)</div>
+        </div>
+
+        <p>Nasz program do odzyskiwania partycji skanuje sektory w poszukiwaniu znaczników systemów plików i pozwala na przywrócenie całej partycji wraz z oryginalną strukturą folderów w kilka minut.</p>
+
+        <a href="https://easeus.pxf.io/jRzR7M" class="cta-part" rel="nofollow">ODZYSKAJ PARTYCJĘ DISKU →</a>
+    </div>
+</body>
+</html>

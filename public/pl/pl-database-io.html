@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Documentation | Alpha Node PL</title>
+    <style>
+        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .header-bar { background: var(--primary-blue); height: 5px; }
+        .content { padding: 40px; }
+        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
+        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
+        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
+        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
+        .solution-btn:hover { background: #005a9e; }
+        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar"></div>
+        <div class="content">
+            <div class="meta-info">Terminal Diagnostyczny // Raport PL-IO</div>
+            <h1>Naprawa błędów fizycznych I/O bazy danych</h1>
+            
+            <p>Niniejszy dokument techniczny dotyczy błędów weryfikacji stron i uszkodzeń fizycznych nośników bazy danych.</p>
+
+            <div class="error-card">
+                Fatal Error: Consistency Check Failed<br>
+                Status: PHYSICAL_IO_CORRUPTION<br>
+                Źródło: Page Verification (Checksum Failure)
+            </div>
+
+            <h3>Analiza Diagnostyczna</h3>
+            <div class="tech-specs">
+                <p>Wykryto fizyczne uszkodzenie danych na nośniku. Potencjalne przyczyny obejmują:</p>
+                <ul>
+                    <li>Błędy sumy kontrolnej strony (Page Checksum).</li>
+                    <li>Uszkodzenie metadanych systemowych bazy danych.</li>
+                    <li>Fizyczne uszkodzenie sektorów dysku twardego.</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 25px;">Aby przywrócić dostęp do danych, wymagana jest naprawa spójności stron przed ponownym uruchomieniem instancji.</p>
+
+            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Uruchom profesjonalną naprawę I/O</button>
+        </div>
+        <div class="footer">
+            Alpha Node Documentation Portal - Wyłącznie do użytku diagnostycznego
+        </div>
+    </div>
+    <script>
+        function startRecovery() {
+            const btn = document.getElementById('actionBtn');
+            btn.innerHTML = "Weryfikacja fizyczna...";
+            setTimeout(() => {
+                btn.innerHTML = "Naprawa spójności stron...";
+                setTimeout(() => {
+                    window.location.href = "https://easeus.pxf.io/jRzR7M";
+                }, 1500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
