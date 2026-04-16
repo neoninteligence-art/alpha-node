@@ -20,69 +20,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Terminal Diagnostyczny // Raport PL-PST</div>
-            <h1>Naprawa uszkodzonego pliku danych Outlook (PST)</h1>
-            
-            <p>Niniejszy dokument techniczny zawiera analizę identyfikacji i rozwiązywania problemów z uszkodzonymi bazami danych poczty Outlook.</p>
-
-            <div class="error-card">
-                Kod Błędu: 0x80040116<br>
-                Status: PST_HEADER_CORRUPTED<br>
-                Źródło: C:\Users\Admin\Documents\Outlook.pst
-            </div>
-
-            <h3>Analiza Diagnostyczna</h3>
-            <div class="tech-specs">
-                <p>Analiza struktury bazy danych wiadomości wykazała błąd krytyczny. Potencjalne przyczyny obejmują:</p>
-                <ul>
-                    <li>Przekroczenie limitu rozmiaru pliku danych (Large PST).</li>
-                    <li>Uszkodzony indeks folderów osobistych.</li>
-                    <li>Niespójność po nieprawidłowym zamknięciu programu.</li>
-                </ul>
-            </div>
-
-            <p style="margin-top: 25px;">Aby odzyskać wiadomości, wymagane jest głębokie skanowanie sektorowe bazy danych przed naprawą nagłówka.</p>
-
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Napraw plik danych PST</button>
-        </div>
-        <div class="footer">
-            Alpha Node Documentation Portal - Wyłącznie do użytku diagnostycznego
-        </div>
-    </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Skanowanie nagłówka PST...";
-            setTimeout(() => {
-                btn.innerHTML = "Odbudowa bazy danych poczty...";
-                setTimeout(() => {
-                    window.location.href = "https://easeus.pxf.io/jRzR7M";
-                }, 1500);
-            }, 1500);
-        }
-    </script>
-
-<div style='width:100%; clear:both; display:block; padding:50px 0; background:transparent; text-align:center;'>
-  <div style='display:inline-block; background:#f8f9fa; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:60px 0; background:#fdfdfd; border-top:1px solid #eee; margin-top:40px;'>
-  <div style='background:#ffffff; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
-  <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+<div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
+  <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
     <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
     <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
     <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>

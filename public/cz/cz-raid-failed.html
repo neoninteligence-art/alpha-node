@@ -20,55 +20,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Diagnostický terminál // Alpha Node CZ</div>
-            <h1>Obnova dat pole RAID 5 (Degradovaný stav)</h1>
-            <p>Technický dokument o logických selháních v RAID svazcích.</p>
-            <div class="error-card">Kritické upozornění: RAID Array Degraded State<br>Stav: PARITY_STRIPE_ERROR<br>Zdroj: Intel/Dell RAID Controller</div>
-            <h3>Diagnostická analýza</h3>
-            <div class="tech-specs">
-                <p>Analýza zjistila chybu v mapování dat. Možné příčiny:</p>
-                <ul>
-                    <li>Ztráta informací o XOR paritě.</li>
-                    <li>Resetování konfigurace řadiče (Foreign Config).</li>
-                    <li>Současné selhání více fyzických disků.</li>
-                </ul>
-            </div>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Spustit rekonstrukci RAID</button>
-        </div>
-        <div class="footer">Alpha Node Documentation Portal - Pouze pro interní diagnostické účely</div>
-    </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Výpočet XOR parity...";
-            setTimeout(() => {
-                btn.innerHTML = "Připojování virtuálního svazku...";
-                setTimeout(() => { window.location.href = "https://easeus.pxf.io/jRzR7M"; }, 1500);
-            }, 1500);
-        }
-    </script>
-
-<div style='width:100%; clear:both; display:block; padding:50px 0; background:transparent; text-align:center;'>
-  <div style='display:inline-block; background:#f8f9fa; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:60px 0; background:#fdfdfd; border-top:1px solid #eee; margin-top:40px;'>
-  <div style='background:#ffffff; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Podnikové řešení</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrovat data starších systémů prostřednictvím profesionálního rozhraní API.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Přístup k dokumentaci v RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
-  <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+<div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
+  <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
     <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
     <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
     <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>

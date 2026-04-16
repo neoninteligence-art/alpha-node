@@ -38,80 +38,8 @@
     </style>
 </head>
 <body>
-    <div class="nav-breadcrumb">Docs > Support > Media > Video Integrity Service</div>
-    <h1>Video Meta-Data Reconstruction</h1>
-
-    <div id="step1">
-        <div class="video-preview-box">
-            <div class="video-overlay"></div>
-            <svg class="video-icon" width="48" height="48" viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-            <div class="glitch-effect">[ Corrupted Header ]</div>
-        </div>
-
-        <div class="metadata-grid">
-            <div class="meta-item"><span class="meta-label">Container</span>Calculating...</div>
-            <div class="meta-item"><span class="meta-label">Stream Status</span>0xc10100be</div>
-        </div>
-
-        <div class="alert-pro">
-            <strong>System Report:</strong> The moov atom is missing or truncated. Frame synchronization is offline. Deep packet inspection is required.
-        </div>
-        <button class="btn-primary" onclick="startFix()">RECONSTRUCT HEADERS</button>
-    </div>
-
-    <div id="step2" class="hidden">
-        <div class="video-preview-box">
-            <div class="video-overlay"></div>
-            <div class="glitch-effect" style="color: var(--ms-blue);">ANALYZING BITSTREAM...</div>
-            <div class="loader-bar"><div class="loader-fill"></div></div>
-        </div>
-        <p style="text-align:center; font-size: 14px;">Scanning H.264/HEVC keyframes and rebuilding index tables...</p>
-    </div>
-
-    <div id="step3" class="hidden">
-        <div class="alert-pro" style="border-left-color: #107c10; background: #f3fdf3;">
-            <strong style="color: #107c10;">Scan Successful:</strong> 1.4GB of visual data recovered. Audio/Video interleaving can be restored.
-        </div>
-        
-        <h3 style="font-size: 18px;">Recommended Deployment: Wondershare Recoverit</h3>
-        <p style="font-size: 14px;">The system has mapped the missing sectors. Use the professional engine below to finalize the MP4/MOV reconstruction.</p>
-        
-        <a href="https://wondersharesoftware.pxf.io/k4z460" class="btn-primary">REPAIR NOW (v12.5)</a>
-    </div>
-
-    <footer>
-        &copy; 2026 Alpha Node Media Restoration Labs.
-    </footer>
-
-    <script>
-        function startFix() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('step2').classList.add('hidden');
-                document.getElementById('step3').classList.remove('hidden');
-            }, 4000);
-        }
-    </script>
-
-<div style='width:100%; clear:both; display:block; padding:50px 0; background:transparent; text-align:center;'>
-  <div style='display:inline-block; background:#f8f9fa; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:60px 0; background:#fdfdfd; border-top:1px solid #eee; margin-top:40px;'>
-  <div style='background:#ffffff; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
-  <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+<div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
+  <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
     <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
     <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
     <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>

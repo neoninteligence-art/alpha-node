@@ -22,74 +22,8 @@
     </style>
 </head>
 <body>
-    <div class="container" id="app">
-        <div class="status-badge" id="badge">SYSTEM DIAGNOSTIC TOOL v4.1</div>
-        <div id="step1">
-            <h2>System Integrity Analysis</h2>
-            <p>A critical memory access violation (0xc0000005) was detected in your recent session. Our diagnostic engine can identify the root cause of the stability failure.</p>
-            <button class="btn" onclick="startScan()">RUN FULL DIAGNOSTIC</button>
-        </div>
-
-        <div id="scanning" class="hidden">
-            <h2 style="text-align: center;">Analyzing Resources...</h2>
-            <div class="loader"></div>
-            <p style="text-align: center;">Verifying partition tables and heap allocation...</p>
-        </div>
-
-        <div id="result" class="hidden">
-            <h2 style="color: #d13438;">Critical Failure Confirmed</h2>
-            <p>The analysis identified <b>Msvcrt.dll</b> corruption and sector instability. To prevent permanent data loss and hardware degradation, immediate restoration is required.</p>
-            <a href="https://easeus.pxf.io/jRzR7M" class="btn">FIX SYSTEM WITH EASEUS</a>
-            <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">Resolution recommended by Alpha Node Enterprise Support.</p>
-        </div>
-
-        <footer>
-            &copy; 2026 Alpha Node Systems. All rights reserved.
-        </footer>
-    </div>
-
-    <script>
-        function startScan() {
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('scanning').classList.remove('hidden');
-            document.getElementById('badge').innerText = "SCAN IN PROGRESS...";
-            
-            setTimeout(() => {
-                document.getElementById('scanning').classList.add('hidden');
-                document.getElementById('result').classList.remove('hidden');
-                document.getElementById('badge').innerText = "REPORT GENERATED";
-                document.getElementById('badge').style.background = "#fde7e9";
-                document.getElementById('badge').style.color = "#d13438";
-            }, 3000);
-        }
-    </script>
-
-<div style='width:100%; clear:both; display:block; padding:40px 0; text-align:center;'>
-  <div style='display:inline-block; background:#f8f9fa; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:600px; box-shadow:0 4px 10px rgba(0,0,0,0.05); text-align:center;'>
-    <p style='margin:0 0 12px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; clear:both; display:block; padding:50px 0; background:transparent; text-align:center;'>
-  <div style='display:inline-block; background:#f8f9fa; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:60px 0; background:#fdfdfd; border-top:1px solid #eee; margin-top:40px;'>
-  <div style='background:#ffffff; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
-  <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+<div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
+  <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
     <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
     <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
     <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>

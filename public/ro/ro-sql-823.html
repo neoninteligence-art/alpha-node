@@ -20,60 +20,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Terminal de Diagnostic // Raport RO-SQL</div>
-            <h1>Eroare de consistență logică SQL Server (823/824)</h1>
-            <p>Acest document tehnic identifică problemele de integritate ale bazei de date SQL Server.</p>
-            <div class="error-card">
-                Cod critic: Msg 824, Level 24, State 2<br>
-                Stare: CHECKSUM_VERIFICATION_FAILED<br>
-                Sursă: SQL Server Storage Engine
-            </div>
-            <h3>Analiză Diagnostică</h3>
-            <div class="tech-specs">
-                <p>Analiza a identificat o eroare fizică de citire/scriere pe disc. Cauzele pot fi:</p>
-                <ul>
-                    <li>Eșecul sumei de control a paginii (Bad Page Checksum).</li>
-                    <li>Inconsistență între jurnalul de tranzacții și fișierul MDF.</li>
-                    <li>Corupere cauzată de drivere de stocare defecte.</li>
-                </ul>
-            </div>
-            <p style="margin-top: 25px;">Pentru a restabili accesul, este necesară o reparație a paginilor afectate.</p>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Repară baza de date SQL</button>
-        </div>
-        <div class="footer">Alpha Node Documentation Portal - Numai pentru uz intern de diagnosticare</div>
-    </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Verificarea sumei de control...";
-            setTimeout(() => {
-                btn.innerHTML = "Restabilirea consistenței SQL...";
-                setTimeout(() => { window.location.href = "https://easeus.pxf.io/jRzR7M"; }, 1500);
-            }, 1500);
-        }
-    </script>
-
-<div style='width:100%; clear:both; display:block; padding:50px 0; background:transparent; text-align:center;'>
-  <div style='display:inline-block; background:#f8f9fa; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Solução Corporativa</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Acesse Documentação no RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:60px 0; background:#fdfdfd; border-top:1px solid #eee; margin-top:40px;'>
-  <div style='background:#ffffff; color:#3c4043; padding:25px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 20px rgba(0,0,0,0.06); text-align:center;'>
-    <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
-    <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
-    <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>
-  </div>
-</div>
-
-<div style='width:100%; display:flex; justify-content:center; padding:40px 0; background:transparent; clear:both;'>
-  <div style='background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;'>
+<div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
+  <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
     <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>⚙️ Enterprise Solution</p>
     <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>Integrate legacy system data via professional API.</p>
     <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>Access Documentation on RapidAPI</a>
