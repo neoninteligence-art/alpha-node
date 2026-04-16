@@ -3,52 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technická dokumentace | Alpha Node CZ</title>
+    <meta name="description" content="Oprava poškozených souborů Excel (.xlsx, .xls). Obnova tabulek, vzorců a maker po chybě 'Soubor nelze otevřít'.">
+    <title>Oprava souborů Excel | Obnova poškozených tabulek XLSX</title>
     <style>
-        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: --e1dfdd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header-bar { background: var(--primary-blue); height: 5px; }
-        .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
-        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
-        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+        :root { --excel-green: #1d6f42; --bg-soft: #f3f4f6; }
+        body { background-color: var(--bg-soft); color: #333; font-family: 'Segoe UI', system-ui, sans-serif; padding: 30px; }
+        .excel-card { max-width: 850px; margin: auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; }
+        .excel-header { background: var(--excel-green); color: #fff; padding: 30px; position: relative; }
+        .excel-header h1 { margin: 0; font-size: 28px; font-weight: 600; }
+        .content { padding: 45px; line-height: 1.7; }
+        .error-log-box { background: #fff9e6; border-left: 4px solid #ffcc00; padding: 20px; margin: 25px 0; font-family: monospace; font-size: 14px; }
+        .tech-list { column-count: 2; gap: 30px; margin: 30px 0; list-style: none; padding: 0; }
+        .tech-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .tech-list li::before { content: '→'; position: absolute; left: 0; color: var(--excel-green); font-weight: bold; }
+        .cta-excel { display: block; background: var(--excel-green); color: #fff; text-align: center; padding: 22px; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 19px; transition: background 0.2s; }
+        .cta-excel:hover { background: #155231; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Diagnostický terminál // Alpha Node CZ</div>
-            <h1>Obnova poškozeného souboru Excel (.xlsx)</h1>
-            <p>Analýza vnitřních chyb konzistence v dokumentech Microsoft Excel.</p>
-            <div class="error-card">Chyba: Soubor nelze otevřít, formát je neplatný<br>Stav: INTERNAL_XML_MISMATCH<br>Zdroj: Office Open XML Subsystem</div>
-            <h3>Diagnostická analýza</h3>
-            <div class="tech-specs">
-                <p>Dokument vykazuje chybu v XML struktuře. Příčiny:</p>
-                <ul>
-                    <li>Neúplné XML tagy uvnitř archivu souboru.</li>
-                    <li>Ztráta odkazů na buňky během automatického ukládání.</li>
-                    <li>Nekonzistence způsobená vynuceným ukončením aplikace.</li>
-                </ul>
-            </div>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Opravit dokument Excel</button>
+    <div class="excel-card">
+        <div class="excel-header">
+            <h1>Oprava poškozeného sešitu Excel</h1>
         </div>
-        <div class="footer">Alpha Node Documentation Portal - Pouze pro interní diagnostické účely</div>
+        <div class="content">
+            <p>Nemůžete otevřít důležitý soubor aplikace Excel? Chybové zprávy jako <strong>"Soubor je poškozen a nelze jej otevřít"</strong> nebo chyby v obsahu XML znamenají, že vnitřní struktura sešitu byla narušena.</p>
+
+            <div class="error-log-box">
+                Chyba: 'Excel nalezl nečitelný obsah v sešitu [název_souboru].xlsx. Chcete obnovit obsah tohoto sešitu?'
+            </div>
+
+            <h3>Co dokážeme obnovit:</h3>
+            <ul class="tech-list">
+                <li>Komplexní vzorce a výpočty</li>
+                <li>Kontingenční tabulky (Pivot Tables)</li>
+                <li>Grafy a formátování buněk</li>
+                <li>VBA makra a skripty</li>
+                <li>Listy s poškozenými metadaty</li>
+                <li>Zabezpečené tabulky</li>
+            </ul>
+
+            <p>Náš algoritmus provádí hloubkovou rekonstrukci XML struktury souboru, čímž eliminuje chyby, které vestavěný nástroj 'Otevřít a opravit' od Microsoftu nedokáže vyřešit.</p>
+
+            <a href="https://wondersharesoftware.pxf.io/k4z460" class="cta-excel" rel="nofollow">OPRAVIT EXCEL SOUBOR NYNÍ →</a>
+        </div>
     </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Rekonstrukce XML tagů...";
-            setTimeout(() => {
-                btn.innerHTML = "Obnova dat z buněk...";
-                setTimeout(() => { window.location.href = "https://easeus.pxf.io/jRzR7M"; }, 1500);
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
