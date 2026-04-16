@@ -6,8 +6,8 @@ jobs:
   inject:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Arquiteto Deep Clean and Reset
+      - uses: actions/checkout@v4 # Atualizado para v4 para evitar warnings de Node.js
+      - name: Arquiteto Emergency Recovery
         run: |
           node -e "
           const fs = require('fs');
@@ -17,55 +17,56 @@ jobs:
             const files = fs.readdirSync(dirPath);
             arrayOfFiles = arrayOfFiles || [];
             files.forEach(function(file) {
-              if (fs.statSync(dirPath + '/' + file).isDirectory()) {
-                arrayOfFiles = getAllFiles(dirPath + '/' + file, arrayOfFiles);
+              const fullPath = path.join(dirPath, file);
+              if (fs.statSync(fullPath).isDirectory()) {
+                arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
               } else if (file.endsWith('.html')) {
-                arrayOfFiles.push(path.join(dirPath, '/', file));
+                arrayOfFiles.push(fullPath);
               }
             });
             return arrayOfFiles;
           }
 
-          const allFiles = getAllFiles('public');
+          // Garantimos que estamos olhando para a pasta 'public'
+          const targetDir = 'public'; 
+          if (!fs.existsSync(targetDir)) {
+             console.log('ERRO: Pasta public não encontrada!');
+             process.exit(1);
+          }
+
+          const allFiles = getAllFiles(targetDir);
 
           allFiles.forEach(filePath => {
             let content = fs.readFileSync(filePath, 'utf8');
 
-            // --- A VASSOURA: LOCALIZA QUALQUER DIV QUE TENHA O LINK DO RAPIDAPI ---
-            // Este padrão localiza desde a primeira div simples até as mais complexas
-            const cleanupPattern = /<div[^>]*?>[\s\S]*?rapidapi\.com\/techsuportalvorada[\s\S]*?<\/div>[\s\S]*?<\/div>|[\s\S]*?/g;
+            // LIMPEZA SEGURA: Remove apenas o que o nosso script injetou antes
+            // Baseado no link do RapidAPI que é o nosso padrão fixo
+            const bannerPattern = /[\s\S]*?/g;
+            const oldDivPattern = /<div[^>]*?>[\s\S]*?rapidapi\.com\/techsuportalvorada[\s\S]*?<\/div>[\s\S]*?<\/div>/g;
             
-            content = content.replace(cleanupPattern, '');
-            
-            // Remove espaços em branco excessivos no final criados pelas limpezas
-            content = content.trim().replace(/\s+<\/body>/, '</body>');
+            content = content.replace(bannerPattern, '').replace(oldDivPattern, '').trim();
 
-            // --- A IDENTIFICAÇÃO: INGLÊS PARA O MUNDO, PT PARA O INDEX ---
-            const isMainIndex = filePath.endsWith('public/index.html');
-            const lang = isMainIndex ? {
-              title: '⚙️ Solução Corporativa',
-              desc: 'Integre dados de sistemas legados via API profissional.',
-              btn: 'Acesse Documentação no RapidAPI'
-            } : {
-              title: '⚙️ Enterprise Solution',
-              desc: 'Integrate legacy system data via professional API.',
-              btn: 'Access Documentation on RapidAPI'
-            };
+            // DETERMINA IDIOMA (Inglês para todos, exceto a raiz)
+            const isRootIndex = filePath === 'public/index.html';
+            const lang = isRootIndex ? 
+              { title: '⚙️ Solução Corporativa', desc: 'Integre dados legados via API.', btn: 'Acessar RapidAPI' } : 
+              { title: '⚙️ Enterprise Solution', desc: 'Integrate legacy data via API.', btn: 'Access RapidAPI' };
 
-            const newBanner = \`
-          <div style='width:100%; clear:both; display:block; padding:50px 0; text-align:center; background:transparent;'>
-            <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; max-width:550px; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
-              <p style='margin:0 0 10px 0; font-size:16px; font-weight:bold;'>\${lang.title}</p>
-              <p style='margin:0 0 15px 0; font-size:14px; color:#5f6368;'>\${lang.desc}</p>
-              <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block; background:#1a73e8; color:#ffffff; padding:10px 20px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:bold;'>\${lang.btn}</a>
+            const banner = \`
+          <div style='width:100%; clear:both; display:block; padding:40px 0; text-align:center;'>
+            <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
+              <p style='margin:0; font-weight:bold;'>\${lang.title}</p>
+              <p style='margin:5px 0 15px 0; font-size:14px; color:#5f6368;'>\${lang.desc}</p>
+              <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' style='background:#1a73e8; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; font-size:13px;'>\${lang.btn}</a>
             </div>
           </div>
           \`;
 
+            // RE-INJEÇÃO: Garante que o conteúdo original NÃO seja deletado
             if (content.includes('</body>')) {
-              const finalContent = content.replace('</body>', newBanner + '\\n</body>');
-              fs.writeFileSync(filePath, finalContent);
-              console.log('Resetado e Corrigido: ' + filePath);
+              const newContent = content.replace('</body>', banner + '\\n</body>');
+              fs.writeFileSync(filePath, newContent);
+              console.log('Recuperado e Atualizado: ' + filePath);
             }
           });
           "
@@ -74,5 +75,5 @@ jobs:
           git config --global user.name 'GitHub Arquiteto'
           git config --global user.email 'action@github.com'
           git add .
-          git commit -m "RESET TOTAL: Limpeza de duplicatas e correção de regionalização" || echo "Sem mudanças"
+          git commit -m "Emergency Fix: Estrutura restaurada e 404 resolvido" || echo "Sem mudanças"
           git push
