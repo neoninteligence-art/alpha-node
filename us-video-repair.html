@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="impact-site-verification" content="885cab2d-286c-4b10-9dc5-4c2f5fc8b1a0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation: Advanced Video Reconstruction Engine (0xc10100be)</title>
+    <style>
+        :root { --ms-blue: #0078d4; --gray-bg: #f3f2f1; --border: #edebe9; }
+        body { font-family: 'Segoe UI', Tahoma, Helvetica, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fff; }
+        .nav-breadcrumb { color: #666; font-size: 14px; margin-bottom: 20px; }
+        h1 { color: #000; font-size: 26px; font-weight: 600; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        
+        /* Visual Suave para a Caixa de Vídeo */
+        .video-preview-box { background: #fafafa; border: 2px dashed #e1dfdd; width: 100%; height: 200px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; margin-bottom: 25px; box-sizing: border-box; }
+        .glitch-effect { color: #828282; font-family: monospace; font-size: 12px; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; z-index: 2; }
+        
+        /* Grid de Alinhamento */
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(#e1dfdd 1px, transparent 1px); background-size: 15px 15px; opacity: 0.5; pointer-events: none; }
+        
+        .video-icon { fill: #828282; opacity: 0.5; z-index: 2; }
+
+        .metadata-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; font-size: 13px; }
+        .meta-item { background: var(--gray-bg); padding: 10px; border-radius: 2px; border: 1px solid var(--border); }
+        .meta-label { color: #666; display: block; font-size: 11px; text-transform: uppercase; }
+
+        .alert-pro { border-left: 4px solid var(--ms-blue); background: var(--gray-bg); padding: 20px; margin: 20px 0; }
+        .btn-primary { background: var(--ms-blue); color: #fff; padding: 14px 30px; border: none; font-weight: 600; cursor: pointer; border-radius: 2px; width: 100%; text-align: center; text-decoration: none; display: block; box-sizing: border-box; }
+        .btn-primary:hover { background: #005a9e; }
+        
+        /* Loader Azul */
+        .loader-bar { width: 80%; height: 2px; background: #eee; margin-top: 20px; position: relative; overflow: hidden; z-index: 2; }
+        .loader-fill { width: 30%; height: 100%; background: var(--ms-blue); position: absolute; animation: load 2s infinite linear; }
+        @keyframes load { from { left: -30%; } to { left: 100%; } }
+        
+        .hidden { display: none; }
+        footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: #999; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="nav-breadcrumb">Docs > Support > Media > Video Integrity Service</div>
+    <h1>Video Meta-Data Reconstruction</h1>
+
+    <div id="step1">
+        <div class="video-preview-box">
+            <div class="video-overlay"></div>
+            <svg class="video-icon" width="48" height="48" viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            <div class="glitch-effect">[ Corrupted Header ]</div>
+        </div>
+
+        <div class="metadata-grid">
+            <div class="meta-item"><span class="meta-label">Container</span>Calculating...</div>
+            <div class="meta-item"><span class="meta-label">Stream Status</span>0xc10100be</div>
+        </div>
+
+        <div class="alert-pro">
+            <strong>System Report:</strong> The moov atom is missing or truncated. Frame synchronization is offline. Deep packet inspection is required.
+        </div>
+        <button class="btn-primary" onclick="startFix()">RECONSTRUCT HEADERS</button>
+    </div>
+
+    <div id="step2" class="hidden">
+        <div class="video-preview-box">
+            <div class="video-overlay"></div>
+            <div class="glitch-effect" style="color: var(--ms-blue);">ANALYZING BITSTREAM...</div>
+            <div class="loader-bar"><div class="loader-fill"></div></div>
+        </div>
+        <p style="text-align:center; font-size: 14px;">Scanning H.264/HEVC keyframes and rebuilding index tables...</p>
+    </div>
+
+    <div id="step3" class="hidden">
+        <div class="alert-pro" style="border-left-color: #107c10; background: #f3fdf3;">
+            <strong style="color: #107c10;">Scan Successful:</strong> 1.4GB of visual data recovered. Audio/Video interleaving can be restored.
+        </div>
+        
+        <h3 style="font-size: 18px;">Recommended Deployment: Wondershare Recoverit</h3>
+        <p style="font-size: 14px;">The system has mapped the missing sectors. Use the professional engine below to finalize the MP4/MOV reconstruction.</p>
+        
+        <a href="https://wondersharesoftware.pxf.io/k4z460" class="btn-primary">REPAIR NOW (v12.5)</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Alpha Node Media Restoration Labs.
+    </footer>
+
+    <script>
+        function startFix() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('step2').classList.add('hidden');
+                document.getElementById('step3').classList.remove('hidden');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
