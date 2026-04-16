@@ -3,52 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Műszaki dokumentáció | Alpha Node HU</title>
+    <meta name="description" content="Sérült VMware .VMDK fájlok javítása és adatvisszaállítás. Megoldás a 'Disk descriptor file is missing or corrupt' hibára.">
+    <title>VMware VMDK Javítás | Virtuális Lemez Adatmentés</title>
     <style>
-        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header-bar { background: var(--primary-blue); height: 5px; }
-        .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
-        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
-        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+        :root { --vm-orange: #f58220; --vm-gray: #2b2b2b; }
+        body { background: radial-gradient(circle at top, #3a3a3a, #1a1a1a); color: #ececec; font-family: 'Ubuntu', sans-serif; padding: 40px; margin: 0; }
+        .vm-card { max-width: 850px; margin: auto; background: rgba(43, 43, 43, 0.9); border: 1px solid #444; border-top: 8px solid var(--vm-orange); padding: 50px; border-radius: 4px; box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+        .badge-it { background: var(--vm-orange); color: #fff; padding: 4px 12px; font-size: 11px; font-weight: bold; border-radius: 2px; text-transform: uppercase; }
+        h1 { font-size: 32px; margin-top: 15px; letter-spacing: -0.5px; }
+        .log-terminal { background: #000; color: #00ff00; padding: 20px; font-family: 'Courier New', monospace; border-radius: 4px; margin: 30px 0; font-size: 13px; border-left: 5px solid #333; }
+        .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+        .grid-box { border: 1px solid #444; padding: 20px; border-radius: 4px; background: rgba(255,255,255,0.03); }
+        .grid-box h3 { color: var(--vm-orange); margin-top: 0; font-size: 18px; }
+        .cta-vm { display: block; background: var(--vm-orange); color: #fff; text-align: center; padding: 22px; text-decoration: none; font-weight: bold; font-size: 19px; border-radius: 4px; margin-top: 40px; transition: 0.3s; }
+        .cta-vm:hover { background: #ff9d4d; box-shadow: 0 0 25px rgba(245, 130, 32, 0.4); transform: translateY(-2px); }
+        footer { margin-top: 40px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #333; padding-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Diagnosztikai terminál // Alpha Node HU</div>
-            <h1>Kritikus VMware hiba: Sérült VMDK fájl</h1>
-            <p>Technikai elemzés a virtuális lemezhozzáférési hibákról és leírókról.</p>
-            <div class="error-card">Kód: Failed to open disk 'virtual.vmdk'<br>Állapot: DESCRIPTOR_INVALID_OR_MISSING<br>Forrás: VMware Workstation Storage</div>
-            <h3>Diagnosztikai elemzés</h3>
-            <div class="tech-specs">
-                <p>Inkonzisztencia észlelhető a virtuális lemez leírójában. Okok:</p>
-                <ul>
-                    <li>Hiányzó kapcsolat a -flat fájl és a leíró között.</li>
-                    <li>Írási hiba a blokkallokációs táblában migráció során.</li>
-                    <li>A pillanatkép-lánc megszakadása (Snapshot chain error).</li>
-                </ul>
-            </div>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">VMware virtuális lemez javítása</button>
+    <div class="vm-card">
+        <span class="badge-it">Rendszergazdai Protokoll</span>
+        <h1>VMware .VMDK Adatvisszaállítás</h1>
+        
+        <div class="log-terminal">
+            [ERROR]: Cannot open the disk 'server-000001.vmdk' or one of the snapshot disks it depends on. <br>
+            [REASON]: The capacity of the parent virtual disk and the capacity of the child virtual disk are different.
         </div>
-        <div class="footer">Alpha Node Documentation - Csak belső diagnosztikai célokra</div>
+
+        <p>A virtuális gépek összeomlása mögött gyakran a snapshot-lánc megszakadása vagy a <strong>flat.vmdk</strong> fájl leírójának (descriptor) sérülése áll. Ha a VMware ESXi vagy Workstation nem tudja csatolni a lemezt, a bináris adatok kinyerése szükséges a VMDK fájlrendszer mélyszintű elemzésével.</p>
+
+        <div class="tech-grid">
+            <div class="grid-box">
+                <h3>Snapshot Helyreállítás</h3>
+                Konzisztencia-ellenőrzés a delta fájlok és a bázislemez között a függőségi fa újjáépítéséhez.
+            </div>
+            <div class="grid-box">
+                <h3>MDF/SQL Kinyerés</h3>
+                Közvetlen hozzáférés a virtuális lemezen belüli adatbázisokhoz, még akkor is, ha az OS nem indul el.
+            </div>
+        </div>
+
+        <a href="https://easeus.pxf.io/jRzR7M" class="cta-vm" rel="nofollow">SÉRÜLT VMDK JAVÍTÁSA MOST →</a>
+        
+        <footer>Támogatott verziók: vSphere ESXi 6.5 - 8.0, VMware Workstation Pro & Player.</footer>
     </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "VMDK leíró elemzése...";
-            setTimeout(() => {
-                btn.innerHTML = "Adatblokkok szinkronizálása...";
-                setTimeout(() => { window.location.href = "https://easeus.pxf.io/jRzR7M"; }, 1500);
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
