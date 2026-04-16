@@ -1,79 +1,20 @@
-name: Inject API Link
+name: Emergency Restore
 on:
   workflow_dispatch:
 
 jobs:
-  inject:
+  restore:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Atualizado para v4 para evitar warnings de Node.js
-      - name: Arquiteto Emergency Recovery
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Baixa todo o histórico para podermos voltar no tempo
+
+      - name: Rollback to Safe State
         run: |
-          node -e "
-          const fs = require('fs');
-          const path = require('path');
-
-          function getAllFiles(dirPath, arrayOfFiles) {
-            const files = fs.readdirSync(dirPath);
-            arrayOfFiles = arrayOfFiles || [];
-            files.forEach(function(file) {
-              const fullPath = path.join(dirPath, file);
-              if (fs.statSync(fullPath).isDirectory()) {
-                arrayOfFiles = getAllFiles(fullPath, arrayOfFiles);
-              } else if (file.endsWith('.html')) {
-                arrayOfFiles.push(fullPath);
-              }
-            });
-            return arrayOfFiles;
-          }
-
-          // Garantimos que estamos olhando para a pasta 'public'
-          const targetDir = 'public'; 
-          if (!fs.existsSync(targetDir)) {
-             console.log('ERRO: Pasta public não encontrada!');
-             process.exit(1);
-          }
-
-          const allFiles = getAllFiles(targetDir);
-
-          allFiles.forEach(filePath => {
-            let content = fs.readFileSync(filePath, 'utf8');
-
-            // LIMPEZA SEGURA: Remove apenas o que o nosso script injetou antes
-            // Baseado no link do RapidAPI que é o nosso padrão fixo
-            const bannerPattern = /[\s\S]*?/g;
-            const oldDivPattern = /<div[^>]*?>[\s\S]*?rapidapi\.com\/techsuportalvorada[\s\S]*?<\/div>[\s\S]*?<\/div>/g;
-            
-            content = content.replace(bannerPattern, '').replace(oldDivPattern, '').trim();
-
-            // DETERMINA IDIOMA (Inglês para todos, exceto a raiz)
-            const isRootIndex = filePath === 'public/index.html';
-            const lang = isRootIndex ? 
-              { title: '⚙️ Solução Corporativa', desc: 'Integre dados legados via API.', btn: 'Acessar RapidAPI' } : 
-              { title: '⚙️ Enterprise Solution', desc: 'Integrate legacy data via API.', btn: 'Access RapidAPI' };
-
-            const banner = \`
-          <div style='width:100%; clear:both; display:block; padding:40px 0; text-align:center;'>
-            <div style='display:inline-block; background:#ffffff; color:#3c4043; padding:20px; border-radius:12px; border:1px solid #dadce0; font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.08);'>
-              <p style='margin:0; font-weight:bold;'>\${lang.title}</p>
-              <p style='margin:5px 0 15px 0; font-size:14px; color:#5f6368;'>\${lang.desc}</p>
-              <a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' style='background:#1a73e8; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; font-size:13px;'>\${lang.btn}</a>
-            </div>
-          </div>
-          \`;
-
-            // RE-INJEÇÃO: Garante que o conteúdo original NÃO seja deletado
-            if (content.includes('</body>')) {
-              const newContent = content.replace('</body>', banner + '\\n</body>');
-              fs.writeFileSync(filePath, newContent);
-              console.log('Recuperado e Atualizado: ' + filePath);
-            }
-          });
-          "
-      - name: Commit and Push
-        run: |
-          git config --global user.name 'GitHub Arquiteto'
-          git config --global user.email 'action@github.com'
-          git add .
-          git commit -m "Emergency Fix: Estrutura restaurada e 404 resolvido" || echo "Sem mudanças"
-          git push
+          # Vamos resetar para 5 commits atrás (antes das tentativas de hoje)
+          git reset --hard HEAD~8
+          git config --global user.name 'Arquiteto Restore'
+          git config --global user.email 'restore@github.com'
+          # Forçamos o GitHub a aceitar a versão antiga "boa"
+          git push origin main --force
