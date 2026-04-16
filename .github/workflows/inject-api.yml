@@ -1,24 +1,40 @@
 name: Inject API Link
 on:
-  workflow_dispatch: # Isso permite que você aperte um botão para rodar
+  workflow_dispatch:
 
 jobs:
   inject:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run Injection Script
+      - name: Run Clean and Inject Script
         run: |
+          # Define o novo banner com marcações de início e fim para futuras manutenções
+          BANNER_START=""
+          BANNER_END=""
+          
+          # Estrutura HTML do Banner Centralizado
+          NEW_BANNER="<div style='width:100%;clear:both;display:block;padding:20px 0;text-align:center;'><div style='display:inline-block;background:#f8f9fa;color:#3c4043;padding:20px;border-radius:12px;border:1px solid #dadce0;font-family:sans-serif;max-width:600px;box-shadow:0 4px 10px rgba(0,0,0,0.05); text-align:center;'><p style='margin:0 0 12px 0;font-size:16px;font-weight:bold;'>⚙️ Solução Corporativa</p><p style='margin:0 0 15px 0;font-size:14px;color:#5f6368;'>Integre dados de sistemas legados via API profissional.</p><a href='https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge' rel='nofollow' target='_blank' style='display:inline-block;background:#1a73e8;color:#ffffff;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:bold;'>Acesse Documentação no RapidAPI</a></div></div>"
+
           for file in public/*.html; do
-            if ! grep -q "rapidapi.com/techsuportalvorada" "$file"; then
-              sed -i 's|<\/body>|<div style="background:#f1f3f4;color:#3c4043;padding:15px;border-radius:8px;border:1px solid #dadce0;font-family:sans-serif;text-align:center;margin:30px auto;max-width:700px;"><p style="margin:0 0 10px 0;font-size:14px;font-weight:bold;">⚙️ Solução Corporativa: Integre dados legados via API.</p><a href="https://rapidapi.com/techsuportalvorada/api/legacy-data-system-bridge" rel="nofollow" target="_blank" style="display:inline-block;background:#1a73e8;color:#ffffff;padding:8px 16px;border-radius:4px;text-decoration:none;font-size:13px;">Acesse no RapidAPI</a></div></body>|g' "$file"
-              echo "Injetado em $file"
-            fi
+            # 1. Remove qualquer versão anterior do banner (limpeza)
+            # Isso evita que o código se acumule se você rodar o script várias vezes
+            sed -i "/$BANNER_START/,/$BANNER_END/d" "$file"
+            
+            # 2. Remove também a versão antiga (sem marcação) se ela existir
+            sed -i 's|<div style="background:#f1f3f4;.*Acesse no RapidAPI</a></div>||g' "$file"
+
+            # 3. Insere a nova versão protegida por comentários antes do </body>
+            FINAL_CODE="$BANNER_START$NEW_BANNER$BANNER_END"
+            sed -i "s|<\/body>|$FINAL_CODE<\/body>|g" "$file"
+            
+            echo "Processado com sucesso: $file"
           done
-      - name: Commit changes
+
+      - name: Commit and Push
         run: |
-          git config --global user.name 'GitHub Action'
+          git config --global user.name 'GitHub Action Arquiteto'
           git config --global user.email 'action@github.com'
           git add .
-          git commit -m "Injeção automática de link da API" || echo "No changes"
+          git commit -m "Correção estrutural: Banner centralizado e limpeza de duplicatas" || echo "Sem mudanças para salvar"
           git push
