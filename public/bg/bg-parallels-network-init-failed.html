@@ -3,52 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Техническа документация | Alpha Node BG</title>
+    <meta name="description" content="Ръководство за поправка на грешка 'Network Initialization Failed' в Parallels Desktop на Mac. Решете проблемите с интернет връзката в Windows 11.">
+    <title>Поправка: Parallels Network Initialization Failed | Mac M3/M4 Guide</title>
     <style>
-        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header-bar { background: var(--primary-blue); height: 5px; }
-        .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
-        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
-        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+        :root { --p-red: #ed1c24; --bg-mac: #f5f5f7; --text: #1d1d1f; }
+        body { background-color: var(--bg-mac); color: var(--text); font-family: -apple-system, sans-serif; line-height: 1.6; padding: 40px; }
+        .fix-container { max-width: 800px; margin: auto; background: #fff; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .header-box { border-bottom: 1px solid #d2d2d7; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { font-size: 32px; font-weight: 700; color: #000; }
+        .error-msg { background: #fff2f2; border: 1px solid var(--p-red); color: var(--p-red); padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px; margin: 20px 0; }
+        .solution-step { margin-bottom: 25px; padding-left: 20px; border-left: 3px solid #0071e3; }
+        .cta-parallels { display: block; background: #000; color: #fff; text-align: center; padding: 20px; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 18px; margin-top: 40px; transition: 0.3s; }
+        .cta-parallels:hover { background: #333; transform: scale(1.02); }
+        .tech-footer { margin-top: 50px; font-size: 12px; color: #86868b; text-align: center; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Диагностичен терминал // Alpha Node BG</div>
-            <h1>Parallels: Мрежовата инициализация не бе успешна</h1>
-            <p>Липса на интернет връзка във виртуалната машина след ъпдейт на macOS.</p>
-            <div class="error-card">Грешка: Unable to connect to Parallels Networking Service<br>Статус: SERVICE_NOT_RESPONDING<br>Източник: Virtual Network Adapter</div>
-            <h3>Диагностичен анализ</h3>
-            <div class="tech-specs">
-                <p>Виртуалният адаптер не получава IP адрес от хоста. Причини:</p>
-                <ul>
-                    <li>Конфликт с VPN софтуер, инсталиран на вашия Mac.</li>
-                    <li>Мрежовата услуга на Parallels е блокирана от macOS Firewall.</li>
-                    <li>Грешна конфигурация на Bridge Mode vs Shared Network.</li>
-                </ul>
-            </div>
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Рестартиране на мрежовите услуги</button>
+    <div class="fix-container">
+        <div class="header-box">
+            <h1>Грешка: Network Initialization Failed</h1>
         </div>
-        <div class="footer">Alpha Node Documentation - Само за диагностични цели</div>
+        
+        <p>Ако виждате съобщението <strong>"Network Initialization Failed"</strong> при стартиране на Windows през Parallels Desktop на вашия Mac, това обикновено се дължи на неправилна конфигурация на виртуалния мрежов адаптер или конфликт със системните разширения на macOS.</p>
+
+        <div class="error-msg">
+            [Error Code: PRL_ERR_NET_INIT_FAILED] - Възникна грешка при инициализиране на мрежата.
+        </div>
+
+        <h3>Как да решите проблема:</h3>
+        <div class="solution-step">
+            <strong>1. Проверка на мрежовия режим:</strong> Отидете в Settings > Hardware > Network и се уверете, че е избран режим "Shared Network".
+        </div>
+        <div class="solution-step">
+            <strong>2. Рестартиране на Parallels Services:</strong> Отворете Terminal в macOS и изпълнете командата <code>sudo prlsrvctl stack-restart</code>.
+        </div>
+        <div class="solution-step">
+            <strong>3. Актуализация на драйверите:</strong> Остарелите Parallels Tools често причиняват този срив при преход към нова версия на macOS.
+        </div>
+
+        <p>За най-добра производителност и стабилност на мрежата при използване на чипове Apple M1, M2 или M3, се препоръчва използването на най-новата оптимизирана версия на Parallels Desktop.</p>
+
+        <a href="https://parallels.sjv.io/GbnQgL" class="cta-parallels" rel="nofollow">Изтеглете оптимизирана версия на Parallels →</a>
+
+        <div class="tech-footer">
+            Съвместим с macOS Sonoma, Sequoia и Windows 11 Pro for ARM.
+        </div>
     </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Нулиране на виртуалния адаптер...";
-            setTimeout(() => {
-                btn.innerHTML = "Конфигуриране на DHCP...";
-                setTimeout(() => { window.location.href = "https://parallels.sjv.io/GbnQgL"; }, 1500);
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
