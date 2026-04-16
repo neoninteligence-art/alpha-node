@@ -3,66 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Documentation | Alpha Node PL</title>
+    <meta name="description" content="Naprawa błędu SQL Server 823. Profesjonalne odzyskiwanie baz danych MDF/NDF po uszkodzeniu fizycznym lub logicznym.">
+    <title>Błąd SQL Server 823 | Naprawa Baz Danych MDF i NDF</title>
     <style>
-        :root { --primary-blue: #0078d4; --bg-gray: #f3f2f1; --text-main: #323130; --border-color: #e1dfdd; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.6; margin: 0; padding: 20px; }
-        .container { max-width: 850px; background: white; margin: 20px auto; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .header-bar { background: var(--primary-blue); height: 5px; }
-        .content { padding: 40px; }
-        .meta-info { font-size: 12px; color: var(--primary-blue); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        h1 { font-size: 26px; margin: 0 0 20px 0; color: #000; }
-        .error-card { background: #fff4ce; border-left: 5px solid #ffb900; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; margin: 20px 0; }
-        .tech-specs { background: #f8f9fa; border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
-        .solution-btn { display: block; background: var(--primary-blue); color: white; text-align: center; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 2px; margin-top: 30px; border: none; width: 100%; cursor: pointer; font-size: 16px; transition: background 0.2s; }
-        .solution-btn:hover { background: #005a9e; }
-        .footer { font-size: 11px; color: #605e5c; border-top: 1px solid var(--border-color); padding: 20px; margin-top: 40px; text-align: center; }
+        :root { --sql-blue: #00205b; --danger: #c62828; }
+        body { background: #f8f9fa; color: #333; font-family: 'Consolas', 'Monaco', monospace; padding: 40px; }
+        .sql-panel { max-width: 900px; margin: auto; background: #fff; border: 1px solid #ddd; padding: 60px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header-top { border-bottom: 2px solid var(--sql-blue); margin-bottom: 30px; padding-bottom: 20px; }
+        h1 { color: var(--sql-blue); font-size: 26px; font-family: sans-serif; }
+        .error-terminal { background: #1a1a1a; color: #ffeb3b; padding: 25px; border-radius: 4px; margin: 30px 0; font-size: 14px; border-left: 8px solid var(--danger); }
+        .technical-analysis { background: #eef2f7; padding: 30px; border-radius: 4px; margin: 30px 0; font-family: sans-serif; line-height: 1.6; }
+        .cta-sql { display: block; background: var(--sql-blue); color: #fff; text-align: center; padding: 22px; text-decoration: none; font-weight: bold; font-size: 20px; border-radius: 4px; font-family: sans-serif; margin-top: 40px; }
+        .cta-sql:hover { background: #003399; }
+        footer { font-size: 11px; color: #888; text-align: center; margin-top: 40px; font-family: sans-serif; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-bar"></div>
-        <div class="content">
-            <div class="meta-info">Terminal Diagnostyczny // Raport PL-823</div>
-            <h1>Rozwiązanie błędu bazy danych MSSQL 823</h1>
-            
-            <p>Niniejszy dokument techniczny zawiera analizę identyfikacji i rozwiązywania problemów z integralnością systemu związanych z określonym kodem błędu.</p>
-
-            <div class="error-card">
-                Krytyczny Kod Zatrzymania: Msg 823, Level 24, State 2<br>
-                Status: LOGICAL_CONSISTENCY_ERROR<br>
-                Źródło: I/O Read Error PROD.MDF (0x0000000abcde)
-            </div>
-
-            <h3>Analiza Diagnostyczna</h3>
-            <div class="tech-specs">
-                <p>Wstępne skany sugerują błąd w mapowaniu logicznym docelowego systemu plików. Potencjalne przyczyny obejmują:</p>
-                <ul>
-                    <li>Niepełny zapis sektora podczas utraty zasilania.</li>
-                    <li>Uszkodzenie sumy kontrolnej strony (Page Checksum).</li>
-                    <li>Błąd walidacji spójności fizycznej bazy danych.</li>
-                </ul>
-            </div>
-
-            <p style="margin-top: 25px;">Aby zapobiec trwałej utracie danych, przed ponownym zamontowaniem woluminu wymagana jest głęboka rekonstrukcja drzewa plików.</p>
-
-            <button id="actionBtn" class="solution-btn" onclick="startRecovery()">Uruchom profesjonalne rozwiązanie naprawcze</button>
+    <div class="sql-panel">
+        <div class="header-top">
+            <h1>Diagnostyka Bazy Danych: SQL Server Error 823</h1>
         </div>
-        <div class="footer">
-            Alpha Node Documentation Portal - Wyłącznie do użytku diagnostycznego
+
+        <div class="error-terminal">
+            Msg 823, Level 24, State 2 <br>
+            The operating system returned error 21(The device is not ready.) to SQL Server during a read at offset 0x000000000ae000 in file 'C:\Data\Database.mdf'.
         </div>
+
+        <div class="technical-analysis">
+            <h3>Analiza Inżynieryjna:</h3>
+            <p>Błąd 823 jest błędem krytycznym, który zazwyczaj wskazuje na problem z podsystemem I/O lub uszkodzenie fizyczne nośnika. W przeciwieństwie do błędów logicznych, błąd ten oznacza, że SQL Server nie może ukończyć operacji odczytu/zapisu na dysku.</p>
+            <ul>
+                <li>Sprawdzenie sum kontrolnych (Checksum) stron bazy danych.</li>
+                <li>Naprawa przerwanych łańcuchów stron (Page Chain).</li>
+                <li>Rekonstrukcja tabel bez konieczności przywracania z uszkodzonych kopii zapasowych.</li>
+            </ul>
+        </div>
+
+        <a href="https://easeus.pxf.io/jRzR7M" class="cta-sql" rel="nofollow">NAPRAW BAZĘ SQL (MDF) →</a>
+
+        <footer>Obsługiwane: SQL Server 2022, 2019, 2017, 2016, 2014, 2012, 2008 i starsze.</footer>
     </div>
-    <script>
-        function startRecovery() {
-            const btn = document.getElementById('actionBtn');
-            btn.innerHTML = "Weryfikacja środowiska SQL...";
-            setTimeout(() => {
-                btn.innerHTML = "Uruchamianie terminala odzyskiwania...";
-                setTimeout(() => {
-                    window.location.href = "https://easeus.pxf.io/jRzR7M";
-                }, 1500);
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
